@@ -1,0 +1,78 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Онтон
+ * Date: 27.04.11
+ * Time: 11:43
+ * To change this template use File | Settings | File Templates.
+ */
+ 
+class XMLRPCHelper {
+    public static $method = 'http11';
+
+    protected static function getApiConfig($key = null) {
+        $config = (array)Yii::app()->params['api'];
+
+        foreach(array('host', 'port', 'path', 'key') as $_key) {
+            if(!isset($config[$_key]))
+                $config[$_key] = null;
+        }
+
+        if($key !== null) {
+            $key = strval($key);
+
+            if(!isset($config[$key]))
+                return null;
+
+            return $config[$key];
+        }
+
+        return $config;
+    }
+
+    protected static function createMessage($message) {
+        $message = new xmlrpcmsg($message);
+        $p0 = new xmlrpcval(self::getApiConfig('key'), 'string');
+        
+        $message->addparam($p0);
+
+        foreach(array_slice(func_get_args(), 1) as $arg) {
+            $arg = php_xmlrpc_encode($arg);
+            $message->addparam($arg);
+        }
+        return $message;
+    }
+
+    public static function sendMessage() {
+        
+        // GET API PARAMS
+        $c = self::getApiConfig();
+
+        $client = new xmlrpc_client($c['path'], $c['host'], $c['port']);
+        $client->return_type = 'xmlrpcvals';
+        $client->accepted_compression = 'deflate';
+        $client->method = self::$method;
+        $client->setKey('all_api', $c['key']);
+		
+//var_dump($client);
+        $args = func_get_args();
+  //      var_dump($args);
+        $throwException = $args[0][0] != '@';
+
+        if( !$throwException ) {
+            $args[0] = substr($args[0], 1);
+        }
+
+        $message = call_user_func_array(array(__CLASS__, 'createMessage'), $args);
+          
+        $res = $client->send($message);
+
+        if ($res->faultcode()) {
+            if($throwException)
+			    throw new CException(get_class($res) . '(' . $args[0] . '): ' . $res->faultString());
+            else
+                return false;
+        } else
+			return php_xmlrpc_decode($res->value());
+    }
+}
