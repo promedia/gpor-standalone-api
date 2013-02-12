@@ -8,7 +8,7 @@
  * API-methods of header and footer getting controller
  *  
  */
-class InformerController extends CController {
+class SiteController extends CController {
 
   /**
    * Экземпляр класса CHttpRequest - полученный запрос
@@ -25,7 +25,14 @@ class InformerController extends CController {
   }
 
   public function actionIndex() {
-
+      $this->render('index');
+  }
+  
+  /**
+   * forms header
+   */
+  public function actionGetHeader() {
+      $this->render('header');
   }
 
  

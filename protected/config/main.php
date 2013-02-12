@@ -40,7 +40,7 @@ return array(
             'routeVar' => 'route',
             'rules' => array(
                 '/' => 'site/index',
-                '<controller>/<action>' => 'site/index',
+                //'<controller>/<action>' => 'site/index',
             ),
         ),
     
