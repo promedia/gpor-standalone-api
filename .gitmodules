@@ -1,0 +1,3 @@
+[submodule "lib/CurlHelper"]
+	path = lib/CurlHelper
+	url = git@github.com:promedia/CurlHelper.git
