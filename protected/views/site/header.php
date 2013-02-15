@@ -16,12 +16,10 @@
       });
     </script>
 
-    <title>**TITLE**</title>
+    <title><?=$this->pageTitle?></title>
 
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-
-
-
+    <meta content="text/html; charset=<?=$charset?>" http-equiv="Content-Type" />
+    
     <link href="/img/icon.ico" type="image/x-icon" rel="icon" />
     <link href="/img/icon.ico" type="image/x-icon" rel="shortcut icon" />
     <link rel="apple-touch-icon" href="/img/apple_touch_icon.png" />
@@ -156,7 +154,6 @@
            <![endif]-->   
 
       <div id="out-head-wrap" >
-
        <div id="out-head-wrap-content" class="out-head-wrap-content">
           <? //КБ с растяжкой ?>
           <?php $this->widget('application.components.WidgetCB', array('name' => 'common_banner_top')); ?>
@@ -173,7 +170,11 @@
               <div class="head_menu-top-left context">
                 <div class="head_menu-top-logo"><a href="/" style="background: url('/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a></div>
                 <? //Название раздела ?>
-                <!--<div class="head_menu-top-section" style="left: 229px"> &mdash; <a style="top: 0;" href="http://properm.ru/news/">Новости Перми</a></div>-->
+                <div class="head_menu-top-section" style="left: 229px">
+                  <?php if (!empty($caption)) {?>
+                    &nbsp;&mdash;&nbsp;<a style="top: 0;" href="<?=$url?>"><?=$caption?></a>
+                  <?php } ?>
+                </div>
               </div>
               <div class="head_menu-top-right context">
                 <noindex>

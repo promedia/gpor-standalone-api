@@ -9,7 +9,6 @@
  *  
  */
 
-require_once Yii::app()->basePath . '/../lib/CurlHelper/CurlHelper.php';
 
 class SiteController extends CController {
 
@@ -19,28 +18,22 @@ class SiteController extends CController {
   protected $httpRequest = NULL;
   
   /**
+   * Charset
+   * @var string 
+   */
+  protected $Charset = 'utf-8';
+  
+  /**
    * Url
    * @var string 
    */
   protected $Url = '';
-  
-  /**
-   * Title
-   * @var string 
-   */
-  protected $Title = '';
-  
+ 
   /**
    * Caption
    * @var string 
    */
   protected $Caption = '';
-  
-  /**
-   * Charset
-   * @var string 
-   */
-  protected $Charset = 'utf-8';
   
   /**
    * Keywords (SEO)
@@ -87,30 +80,7 @@ class SiteController extends CController {
     $this->render('error');
   }
   
-  /**
-     * Multi-demensional array filtering function
-     * @var array 
-     * @param array $array input array for filtering
-     * @param string $index key(field) for filtering
-     * @param $value value for filtering
-     * @return filtered array
-     * This filter will return only those items that match the $value given
-     */
-  private function filter_by_value ($array, $index, $value){ 
-        if(is_array($array) && count($array)>0)  
-        { 
-            foreach(array_keys($array) as $key){ 
-                $temp[$key] = $array[$key][$index]; 
-                 
-                if ($temp[$key] == $value){ 
-                    $newarray[$key] = $array[$key]; 
-                } 
-            } 
-          } 
-      return $newarray; 
-    } 
-    
-    
+
   /** Function of header forming
    * 
    */
@@ -118,8 +88,10 @@ class SiteController extends CController {
     
     $this->httpRequest = Yii::app()->getRequest();
     
-    // getting list of api custom data (url, metatags, etc.)
-    $data = XMLRPCHelper::sendMessage('admin.listCustomUrlTitles');
+    // setting the charset of section (page)
+    if ($this->httpRequest->getQuery('charset')) {
+      $this->Charset = strip_tags($this->httpRequest->getQuery('charset'));
+    }
     
     // setting the url of section (page)
     if ($this->httpRequest->getQuery('url')) {
@@ -137,36 +109,45 @@ class SiteController extends CController {
       }       
     }
     
-    $data = $this->filter_by_value($data, 'url', $this->Url); 
+    if (!empty($this->Url)) {
+      
+      // getting list of api custom data (url, metatags, etc.)
+      $data = XMLRPCHelper::sendMessage('admin.listCustomUrlTitles');
+      
+      // filtering the data bu value of url
+      $filter = new ArrayFilter();
+      $data = $filter->filter_by_value($data, 'url', $this->Url); 
+    }
    
     
     // setting the title of section (page)
     if ($this->httpRequest->getQuery('title')) {
-      $this->Title = strip_tags($this->httpRequest->getQuery('title'));
+      $this->pageTitle = strip_tags(urldecode($this->httpRequest->getQuery('title')));
+        if ($this->Charset != 'utf-8') $this->pageTitle = iconv($this->Charset, 'utf-8', $this->pageTitle);
     } elseif ($data) {
-      $this->Title = strip_tags($data[0]['title']);
+      $this->pageTitle = strip_tags($data[0]['title']);
+    } else {
+      $this->pageTitle = 'Properm.ru';
     }
     
     // setting the caption of section (page)
     if ($this->httpRequest->getQuery('caption')) {
-      $this->Caption = strip_tags($this->httpRequest->getQuery('caption'));
-    }
-    
-    // setting the charset of section (page)
-    if ($this->httpRequest->getQuery('charset')) {
-      $this->Charset = strip_tags($this->httpRequest->getQuery('charset'));
+      $this->Caption = strip_tags(urldecode($this->httpRequest->getQuery('caption')));
+       if ($this->Charset != 'utf-8') $this->Caption = iconv($this->Charset, 'utf-8', $this->Caption);
     }
     
     // setting the keywords (SEO) of section (page)
     if ($this->httpRequest->getQuery('keywords')) {
-      $this->Keywords = strip_tags($this->httpRequest->getQuery('keywords'));
+      $this->Keywords = strip_tags(urldecode($this->httpRequest->getQuery('keywords')));
+        if ($this->Charset != 'utf-8') $this->Keywords = iconv($this->Charset, 'utf-8', $this->Keywords);
     } elseif ($data) {
       $this->Keywords = strip_tags($data[0]['keywords']);
     }
     
     // setting the description (SEO) of section (page)
     if ($this->httpRequest->getQuery('description')) {
-      $this->Description = strip_tags($this->httpRequest->getQuery('description'));
+      $this->Description = strip_tags(urldecode($this->httpRequest->getQuery('description')));
+        if ($this->Charset != 'utf-8') $this->Description = iconv($this->Charset, 'utf-8', $this->Description);
     } elseif ($data) {
       $this->Description = strip_tags($data[0]['description']);
     }
@@ -186,13 +167,47 @@ class SiteController extends CController {
       $this->Search = intval(strip_tags($this->httpRequest->getQuery('search')));
     }
     
-      $this->render('header', array('title' => $this->Title, 
+    
+    // setting the keywords in the header 
+    if (!empty($this->Keywords)) {
+      Yii::app()->clientScript->registerMetaTag($this->Keywords, 'keywords');
+    }
+    
+    // setting the description in the header
+    if (!empty($this->Description)) {
+      Yii::app()->clientScript->registerMetaTag($this->Description, 'description');
+    }
+    
+    // setting the url of javascript files in the header
+    if (!empty($this->JsUrl)) {
+      $JsScripts = explode(',',$this->JsUrl);
+        
+      if (is_array($JsScripts)) {
+          foreach ($JsScripts as $key => $js) {
+            Yii::app()->getClientScript()->registerScriptFile($js);
+          }    
+      } else {
+        Yii::app()->getClientScript()->registerScriptFile($this->JsUrl);
+      }
+    }
+    
+    // setting the url of style(css) files in the header
+    if (!empty($this->CssUrl)) {
+      $CssFiles = explode(',',$this->CssUrl);
+        
+      if (is_array($CssFiles)) {
+          foreach ($CssFiles as $key => $css) {
+            Yii::app()->getClientScript()->registerCssFile($css);
+          }    
+      } else {
+        Yii::app()->getClientScript()->registerCssFile($this->CsssUrl);
+      }
+    }
+    
+    
+      $this->render('header', array('url' => $this->Url,
                                     'caption' => $this->Caption, 
                                     'charset' => $this->Charset, 
-                                    'keywords' => $this->Keywords, 
-                                    'description' => $this->Description, 
-                                    'css' => $this->CssUrl, 
-                                    'js' => $this->JsUrl, 
                                     'search' => $this->Search));
   }
 }
