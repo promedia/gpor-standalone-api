@@ -1,4 +1,4 @@
-<?php
+п»ї<?php
 
 /**
  * @author Rusakova Lyudmila 
@@ -80,7 +80,7 @@ class SiteController extends CController {
 
   
   public function actionIndex() {
-      throw new CHttpException(404,'Данная страница не существует');
+      throw new CHttpException(404,'404 Error');
   }
   
   public function actionError() {

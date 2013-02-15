@@ -157,22 +157,12 @@
 
       <div id="out-head-wrap" >
 
-       <!-- <div id="out-head-wrap-content" class="out-head-wrap-content">
-
-
+       <div id="out-head-wrap-content" class="out-head-wrap-content">
           <? //КБ с растяжкой ?>
-          <!--<div class="content-block">
-
-
-            
-
-
-          </div>
-
-
-
-        </div>-->
-        <div id="head-wrap" class="ie_layout" >
+          <?php $this->widget('application.components.WidgetCB', array('name' => 'common_banner_top')); ?>
+       </div>
+        
+       <div id="head-wrap" class="ie_layout" >
           <!--[if lt IE 7]>
 <div class="ie_max-width_left_frame"></div>
 <div class="ie_max-width_right_frame"></div>
