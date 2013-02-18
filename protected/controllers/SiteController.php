@@ -211,7 +211,11 @@ class SiteController extends CController {
         'charset' => $this->Charset,
         'search' => $this->Search), true);
     
-    echo iconv('utf-8', $this->Charset, $render);
+    if ($this->Charset != 'utf-8') {
+      echo iconv('utf-8', $this->Charset, $render);
+    } else {
+      echo $render;
+    }
   }
 
 }
