@@ -16,10 +16,10 @@
       });
     </script>
 
-    <title><?=$this->pageTitle?></title>
+    <title><?= $this->pageTitle ?></title>
 
-    <meta content="text/html; charset=<?=$charset?>" http-equiv="Content-Type" />
-    
+    <meta content="text/html; charset=<?= $charset ?>" http-equiv="Content-Type" />
+
     <link href="/img/icon.ico" type="image/x-icon" rel="icon" />
     <link href="/img/icon.ico" type="image/x-icon" rel="shortcut icon" />
     <link rel="apple-touch-icon" href="/img/apple_touch_icon.png" />
@@ -75,11 +75,63 @@
     <![endif]-->
 
     <script src="/js/client.js"  type="text/javascript"></script>
+    <?php //стили и скрипт для поиска ?>
+    <?php if (!empty($search)) { ?>
+    <script type="text/javascript">
+      (function($) {
+        $(function() {
+          var $searchText = $('#v5-search-text');
+
+          $searchText.blur(function() {
+            if(!'кремлевская диета' || this.value.replace(/(^\s+|\s+$)/g, '')) return;
+            $searchText.val('Например: кремлевская диета').addClass('blured');
+          })
+          .focus(function() {
+            if(this.value.replace(/(^\s+|\s+$)/g, '') != 'Например: кремлевская диета') return;
+            $searchText.val('').removeClass('blured');
+          })
+          .parents('form').submit(function() {
+            if($.trim($searchText.val()) != 'Например: кремлевская диета')
+              return;
+
+            $searchText.val('кремлевская диета').removeClass('blured');
+          }).attr('autocomplete', 'off');
+
+          if(!$searchText.val() && 'кремлевская диета')
+            $searchText.addClass('blured').val('Например: кремлевская диета');
+
+          $.browser.msie && $.browser.version <= 6 ? LoadPng() : '';
+        });
+
+      })(jQuery);
+    </script>
+    <style type="text/css">
+      .search_input_header.blured {
+        color: #CCCCCC;
+      }
+      .search_input_header {
+        position: relative;  width: 362px;  margin: 0;  padding: 4px 3px;
+        -webkit-appearance: textfield;    background-color: white;  border: 2px inset;  border-image: initial;  -webkit-rtl-ordering: logical;  -webkit-user-select: text;  cursor: auto;
+        letter-spacing: normal;  word-spacing: normal;  text-transform: none;  text-indent: 0px;  text-shadow: none;  display: inline-block;  text-align: start;
+      }
+      .search_submit_header {
+        top: 19px;  margin-left: 6px;  padding: 2px 10px;  height: 30px;  font-family: 'Trebuchet MS';  font-weight: bold;  color: #5E5C58;
+      }
+      .search_form_header {
+        margin-left: 270px;position: absolute;  height: 57px;  margin: 0 19% 0 260px;  padding-top: 7px;  padding-right: 330px;
+      }
+      .search_form_header p {
+        margin: 0;  margin-bottom: 1px;  white-space: nowrap;
+      }
+      .search_form_header label {
+        font-size: 11px;  color: #EBFFBC;
+      }
+    </style>
+    <?php } ?>
 
 
 
-
-<?php //Хрен знает что такое ?>
+    <?php //Хрен знает что такое ?>
     <script language="JavaScript" type="text/javascript">
       if (self.parent.frames.length != 0)
         self.parent.location="http://properm.ru"
@@ -88,25 +140,22 @@
     <script type="text/javascript">
       /* <![CDATA[ */
       $(document)
-      <? //Путь до кэша js, css & img в первом параметре был ?>
-      .data('portal.resources', '')
-      .data('portal.user.id', '')
-      .data('portal.user.uid', '')
-      .data('portal.user.isInGlobalBan', '')
-      .data('portal.user.loginUrl', '/user/userAjax/login/')
-      .data('portal.user.registerUrl', '/user/userAjax/register/')
-      .data('portal.user.registerCaptchaUrl', '/img/empty.gif')
-      .data('portal.user.repairUrl', '/user/userAjax/restoreForgottenPassword/')
-      .data('portal.user.infoUrl', '/user/userAjax/getUserInfo/')
-      .data('portal.outerHostName', 'properm.ru');
-      document.domain = 'properm.ru';
+<?php //Путь до кэша js, css & img в первом параметре был    ?>
+  .data('portal.resources', '')
+  .data('portal.user.id', '')
+  .data('portal.user.uid', '')
+  .data('portal.user.isInGlobalBan', '')
+  .data('portal.user.loginUrl', '/user/userAjax/login/')
+  .data('portal.user.registerUrl', '/user/userAjax/register/')
+  .data('portal.user.registerCaptchaUrl', '/img/empty.gif')
+  .data('portal.user.repairUrl', '/user/userAjax/restoreForgottenPassword/')
+  .data('portal.user.infoUrl', '/user/userAjax/getUserInfo/')
+  .data('portal.outerHostName', 'properm.ru');
+  document.domain = 'properm.ru';
 
-      var bannersource = '';
-      /* ]]> */
+  var bannersource = '';
+  /* ]]> */
     </script>
-
-
-
 
     <? //А этой картинки вообще нет на серваке. Убираю - ничего не изменяется. Когда создадим всю шапку-подвал, нужно проверить за что отвечают эти скрипты ?>
     <style text="text/css">
@@ -139,50 +188,63 @@
       <!--[if IE 8]><div id="ie_8"><![endif]-->
 
       <!--[if IE 8]>
-           <style>
-                   .out-head-wrap-content { 
-                           top : -6px;
-                   }   		
-           </style>
-           <![endif]-->
+        <style>
+           .out-head-wrap-content { 
+              top : -6px;
+            }   		
+         </style>
+      <![endif]-->
       <!--[if IE 8]>
-           <style>
-                   .out-head-wrap-content { 
-                           top : -6px;
-                   }   		
-           </style>
-           <![endif]-->   
+         <style>
+           .out-head-wrap-content { 
+             top : -6px;
+           }   		
+         </style>
+       <![endif]-->   
 
       <div id="out-head-wrap" >
-       <div id="out-head-wrap-content" class="out-head-wrap-content">
+        <div id="out-head-wrap-content" class="out-head-wrap-content">
           <? //КБ с растяжкой ?>
           <?php $this->widget('application.components.WidgetCB', array('name' => 'common_banner_top')); ?>
-       </div>
-        
-       <div id="head-wrap" class="ie_layout" >
+        </div>
+
+        <div id="head-wrap" class="ie_layout" >
           <!--[if lt IE 7]>
-<div class="ie_max-width_left_frame"></div>
-<div class="ie_max-width_right_frame"></div>
-<![endif]-->
+            <div class="ie_max-width_left_frame"></div>
+            <div class="ie_max-width_right_frame"></div>
+          <![endif]-->
           <div id="head" class="ie_layout">
             <div class="head_menu-top context">
               <div class="decorationHeaderPic "></div>
               <div class="head_menu-top-left context">
-                <div class="head_menu-top-logo"><a href="/" style="background: url('/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a></div>
-                <? //Название раздела ?>
-                <div class="head_menu-top-section" style="left: 229px">
-                  <?php if (!empty($caption)) {?>
-                    &nbsp;&mdash;&nbsp;<a style="top: 0;" href="<?=$url?>"><?=$caption?></a>
-                  <?php } ?>
+                <div class="head_menu-top-logo">
+                  <a href="properm.ru/" style="background: url('/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
                 </div>
+                
+                <?php if (!empty($search)) { ?>
+                <?php //блок поиска ?>
+                <form action="http://properm.ru/search/" accept-charset="UTF-8" method="get" class="search_form_header" autocomplete="off">
+                  <p><label for="v5-search-text">Поиск</label></p>
+                  <p>
+                    <input type="text" class="search_input_header blured" name="searchString" value="" id="v5-search-text" />
+                    <input type="submit" class="search_submit_header" value="Найти" />
+                  </p>
+
+                </form>
+                  <?php } elseif (!empty($caption)) { ?>
+                <?php //Название раздела ?>
+                <div class="head_menu-top-section" style="left: 229px">
+                    &nbsp;&mdash;&nbsp;<a style="top: 0;" href="<?= $url ?>"><?= $caption ?></a>
+                </div>
+                <?php } ?>
               </div>
               <div class="head_menu-top-right context">
                 <noindex>
 
                   <!--[if lte IE 8]>
-                      <style type="text/css">
-                          .head_menu-top .head_menu-top-weather { width: 220px; }
-                      </style>
+                    <style type="text/css">
+                      .head_menu-top .head_menu-top-weather { width: 220px; }
+                    </style>
                   <![endif]-->
                   <? //Блок погоды ?>
                   <!--<div class="head_menu-top-weather context rc5">
