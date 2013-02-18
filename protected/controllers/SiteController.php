@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * @author Rusakova Lyudmila 
@@ -206,10 +206,12 @@ class SiteController extends CController {
     }
 
 
-    $this->render('header', array('url' => $this->Url,
+    $render = $this->render('header', array('url' => $this->Url,
         'caption' => $this->Caption,
         'charset' => $this->Charset,
-        'search' => $this->Search));
+        'search' => $this->Search), true);
+    
+    echo iconv('utf-8', $this->Charset, $render);
   }
 
 }

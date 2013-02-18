@@ -16,65 +16,71 @@
       });
     </script>
 
-    <title><?= $this->pageTitle ?></title>
+    
 
     <meta content="text/html; charset=<?= $charset ?>" http-equiv="Content-Type" />
 
-    <link href="/img/icon.ico" type="image/x-icon" rel="icon" />
-    <link href="/img/icon.ico" type="image/x-icon" rel="shortcut icon" />
-    <link rel="apple-touch-icon" href="/img/apple_touch_icon.png" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/favicon.ico" type="image/x-icon" rel="icon" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/img/icon.ico" type="image/x-icon" rel="shortcut icon" />
+    <link rel="apple-touch-icon" href="<?=Yii::app()->request->getBaseUrl(true)?>/img/apple_touch_icon.png" />
 
-    <link href="/css/client.css" rel="stylesheet"  type="text/css" />
-
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/client.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_main.css" rel=stylesheet type="text/css">
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/odl_main_v3.css" rel=stylesheet type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_style.css" rel=stylesheet type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/style.css" rel=stylesheet type="text/css" /> 
+    
+    <title><?= $this->pageTitle ?></title>
+    
     <!--[if lt IE 8]>
-    <link href="/css/head.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/head.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/float.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/float.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/common.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/common.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/decorations.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/decorations.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/forms.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/forms.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/b-popup-subscribe__subscribe-content.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__subscribe-content.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
-    <script src="/js/client.js"  type="text/javascript"></script>
+    <script src="<?=Yii::app()->request->getBaseUrl(true)?>/js/client.js"  type="text/javascript"></script>
     <?php //стили и скрипт для поиска ?>
     <?php if (!empty($search)) { ?>
     <script type="text/javascript">
@@ -141,7 +147,7 @@
       /* <![CDATA[ */
       $(document)
 <?php //Путь до кэша js, css & img в первом параметре был    ?>
-  .data('portal.resources', '')
+  .data('portal.resources', '<?=Yii::app()->request->getBaseUrl(true)?>')
   .data('portal.user.id', '')
   .data('portal.user.uid', '')
   .data('portal.user.isInGlobalBan', '')
@@ -163,7 +169,7 @@
     </style>
     <!--[if lte IE 6]>
         <style type="text/css">
-            .head_menu-top .head_menu-top-left .head_menu-top-logo a { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/9666e7a3.png',sizingMethod='scale'); }
+            .head_menu-top .head_menu-top-left .head_menu-top-logo a { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=Yii::app()->request->getBaseUrl(true)?>/img/9666e7a3.png',sizingMethod='scale'); }
         </style>
     <![endif]-->
   </head>
@@ -218,7 +224,7 @@
               <div class="decorationHeaderPic "></div>
               <div class="head_menu-top-left context">
                 <div class="head_menu-top-logo">
-                  <a href="properm.ru/" style="background: url('/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
+                  <a href="properm.ru/" style="background: url('<?=Yii::app()->request->getBaseUrl(true)?>/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
                 </div>
                 
                 <?php if (!empty($search)) { ?>
