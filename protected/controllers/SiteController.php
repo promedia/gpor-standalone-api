@@ -102,6 +102,8 @@ class SiteController extends CController {
       if (substr($this->Url, 0, 1) != '/') {
         $this->Url = '/' . $this->Url;
       }
+    } else {
+      throw new CHttpException(404, '404 Error');
     }
 
     if (!empty($this->Url)) {
@@ -109,7 +111,7 @@ class SiteController extends CController {
       // getting list of api custom data (url, metatags, etc.)
       $data = XMLRPCHelper::sendMessage('admin.listCustomUrlTitles');
 
-      // filtering the data bu value of url
+      // filtering the data by value of url
       $filter = new ArrayFilter();
       $data = $filter->filter_by_value($data, 'url', $this->Url);
     }
@@ -177,19 +179,6 @@ class SiteController extends CController {
       Yii::app()->clientScript->registerMetaTag($this->Description, 'description');
     }
 
-    // setting the url of javascript files in the header
-    if (!empty($this->JsUrl)) {
-      $JsScripts = explode(',', $this->JsUrl);
-
-      if (is_array($JsScripts)) {
-        foreach ($JsScripts as $key => $js) {
-          Yii::app()->getClientScript()->registerScriptFile($js);
-        }
-      } else {
-        Yii::app()->getClientScript()->registerScriptFile($this->JsUrl);
-      }
-    }
-
     // setting the url of style(css) files in the header
     if (!empty($this->CssUrl)) {
       $CssFiles = explode(',', $this->CssUrl);
@@ -200,6 +189,19 @@ class SiteController extends CController {
         }
       } else {
         Yii::app()->getClientScript()->registerCssFile($this->CsssUrl);
+      }
+    }
+
+    // setting the url of javascript files in the header
+    if (!empty($this->JsUrl)) {
+      $JsScripts = explode(',', $this->JsUrl);
+
+      if (is_array($JsScripts)) {
+        foreach ($JsScripts as $key => $js) {
+          Yii::app()->getClientScript()->registerScriptFile($js);
+        }
+      } else {
+        Yii::app()->getClientScript()->registerScriptFile($this->JsUrl);
       }
     }
 
