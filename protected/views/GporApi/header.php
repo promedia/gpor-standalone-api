@@ -5,7 +5,7 @@
   <head>
 
     <? //на другом конце url - оказался скрипт содержащий методы для проверки авторизован ли юзер и прочей ерунды. Нужно разобраться что к чему ?>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
       var url = "http://auth.properm.ru/auth/checkIsAuth/?providers_set=properm,vk,fb,tw,lj&redirectUrl=http%3A%2F%2Fproperm.ru%2Fnewgporlogin%2F&returnUrl=http%3A%2F%2Fproperm.ru%2Fnews%2F&rand=236466";
       url = url.replace("http%3A%2F%2Fproperm.ru%2Fnews%2F",encodeURIComponent(window.location));
       document.write('<scri' + 'pt type="text/javascript" src="' + url + '"></scri' + 'pt>');
@@ -14,7 +14,7 @@
       GporAuth.run (function(token) {
         window.location.href = 'http://properm.ru/newgporlogin/?auth_token='+token+'&returnUrl='+window.location;
       });
-    </script>
+    </script>-->
 
     
 
@@ -26,7 +26,7 @@
 
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/client.css" rel="stylesheet"  type="text/css" />
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_main.css" rel=stylesheet type="text/css">
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/odl_main_v3.css" rel=stylesheet type="text/css" />
+    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_main_v3.css" rel=stylesheet type="text/css" />
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_style.css" rel=stylesheet type="text/css" />
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/style.css" rel=stylesheet type="text/css" /> 
     
@@ -138,7 +138,7 @@
 
 
     <?php //Хрен знает что такое ?>
-    <script language="JavaScript" type="text/javascript">
+    <!--<script language="JavaScript" type="text/javascript">
       if (self.parent.frames.length != 0)
         self.parent.location="http://properm.ru"
     </script>
@@ -146,7 +146,7 @@
     <script type="text/javascript">
       /* <![CDATA[ */
       $(document)
-<?php //Путь до кэша js, css & img в первом параметре был    ?>
+  <?php //Путь до кэша js, css & img в первом параметре был ?>
   .data('portal.resources', '<?=Yii::app()->request->getBaseUrl(true)?>')
   .data('portal.user.id', '')
   .data('portal.user.uid', '')
@@ -161,12 +161,12 @@
 
   var bannersource = '';
   /* ]]> */
-    </script>
+    </script>-->
 
     <? //А этой картинки вообще нет на серваке. Убираю - ничего не изменяется. Когда создадим всю шапку-подвал, нужно проверить за что отвечают эти скрипты ?>
-    <style text="text/css">
+    <!--<style text="text/css">
       .head_menu-weather-status { background: url('http://properm.ru/st//2cb6206a5c755f558052c7818b60374ea6018df1/img/weather-icons.png') 0 0 no-repeat; }
-    </style>
+    </style>-->
     <!--[if lte IE 6]>
         <style type="text/css">
             .head_menu-top .head_menu-top-left .head_menu-top-logo a { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=Yii::app()->request->getBaseUrl(true)?>/img/9666e7a3.png',sizingMethod='scale'); }
