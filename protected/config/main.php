@@ -39,13 +39,13 @@ return array(
             'urlSuffix' => '/',
             'routeVar' => 'route',
             'rules' => array(
-                '/' => 'site/index',
-                //'<controller>/<action>' => 'site/index',
+                '/' => 'GporApi/index',
+                '<action>' => 'GporApi/<action>',
             ),
         ),
     
         'errorHandler'=>array(
-            'errorAction'=>'site/error',
+            'errorAction'=>'GporApi/error',
         ),
     
         'log' => array(
