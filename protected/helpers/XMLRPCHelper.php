@@ -6,7 +6,9 @@
  * Time: 11:43
  * To change this template use File | Settings | File Templates.
  */
- 
+
+require_once(dirname(__FILE__) . "/../lib/xmlrpc-3.0.0.beta/xmlrpc.inc"); 
+
 class XMLRPCHelper {
     public static $method = 'http11';
 
