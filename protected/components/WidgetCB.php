@@ -25,8 +25,12 @@ class WidgetCB extends CWidget {
       $CB = XMLRPCHelper::sendMessage('contextblock.get', $this->name);
 
       // set cahce
-      if (!empty($CB))
-        Yii::app()->cache->set($cacheKey . '_CB', $CB, 24 * 60 * 60);
+      if (!empty($CB)) {
+        $cachingPeriod = !empty(Yii::app()->params['cachingPeriod']['CB'][$this->name]) ?
+                Yii::app()->params['cachingPeriod']['CB'][$this->name] : Yii::app()->params['cachingPeriod']['CB']['default'];
+        
+        Yii::app()->cache->set($cacheKey . '_CB', $CB, $cachingPeriod);
+      }
 
       $this->render('content_block', array('CB' => $CB));
     }

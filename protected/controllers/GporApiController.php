@@ -179,7 +179,7 @@ class GporApiController extends CController {
 
       echo $render;
 
-      Yii::app()->cache->set($cacheKey . '_header', $render, 60 * 60);
+      Yii::app()->cache->set($cacheKey . '_header', $render, Yii::app()->params['cachingPeriod']['header']);
     }
   }
 
