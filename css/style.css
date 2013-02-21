@@ -1,10 +1,30 @@
 a.head_menu_item_link {color: #fff;}
 a.head_submenu_item_link, a.head_subsubmenu_item_link {
-display: block;
-font-weight: bold;
-position: relative;
-line-height: 1.3;
+  display: block;
+  font-weight: bold;
+  position: relative;
+  line-height: 1.3;
 }
 a.head_submenu_item_link {
   color: #037dd3;
+}
+.search_input_header.blured {
+  color: #CCCCCC;
+}
+.search_input_header {
+  position: relative;  width: 362px;  margin: 0;  padding: 4px 3px;
+  -webkit-appearance: textfield;    background-color: white;  border: 2px inset;  border-image: initial;  -webkit-rtl-ordering: logical;  -webkit-user-select: text;  cursor: auto;
+  letter-spacing: normal;  word-spacing: normal;  text-transform: none;  text-indent: 0px;  text-shadow: none;  display: inline-block;  text-align: start;
+}
+.search_submit_header {
+  top: 19px;  margin-left: 6px;  padding: 2px 10px;  height: 30px;  font-family: 'Trebuchet MS';  font-weight: bold;  color: #5E5C58;
+}
+.search_form_header {
+  margin-left: 270px;position: absolute;  height: 57px;  margin: 0 19% 0 260px;  padding-top: 7px;  padding-right: 330px;
+}
+.search_form_header p {
+  margin: 0;  margin-bottom: 1px;  white-space: nowrap;
+}
+.search_form_header label {
+  font-size: 11px;  color: #EBFFBC;
 }

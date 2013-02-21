@@ -10,64 +10,6 @@
  */
 class GporApiController extends CController {
 
-  /**
-   * CHttpRequest - received request
-   */
-  protected $httpRequest = NULL;
-
-  /**
-   * Charset
-   * @var string 
-   */
-  protected $Charset = 'utf-8';
-
-  /**
-   * Url
-   * @var string 
-   */
-  protected $Url = '';
-
-  /**
-   * Caption
-   * @var string 
-   */
-  protected $Caption = '';
-
-  /**
-   * Keywords (SEO)
-   * @var string 
-   */
-  protected $Keywords = '';
-
-  /**
-   * Description (SEO)
-   * @var string 
-   */
-  protected $Description = '';
-
-  /**
-   * Style files
-   * @var string 
-   */
-  protected $CssUrl = '';
-
-  /**
-   * Javascript files
-   * @var string 
-   */
-  protected $JsUrl = '';
-
-  /**
-   * Search string
-   * @var integer 
-   */
-  protected $Search = 0;
-
-  public function __construct($id) {
-
-    parent::__construct($id);
-  }
-
   public function actionIndex() {
     throw new CHttpException(404, '404 Error');
   }
@@ -83,141 +25,148 @@ class GporApiController extends CController {
    */
   public function actionGetHeader() {
 
-    $this->httpRequest = Yii::app()->getRequest();
+    $httpRequest = Yii::app()->getRequest();
 
     // setting the url of section (page)
-    if (!($this->Url = $this->httpRequest->getQuery('url'))) {
+    if (!($url = $httpRequest->getQuery('url'))) {
       throw new CHttpException(500, '500 Error');
     }
 
-    $this->Url = strip_tags(urldecode($this->Url));
+    $url = strip_tags(urldecode($url));
 
     // deleting WWW from Url and adding slashes in the beggining and in the end of Url
-    $this->Url = preg_replace('/www./', '', $this->Url);
+    $url = preg_replace('/www./', '', $url);
 
-    if (substr($this->Url, -1) != '/') {
-      $this->Url = $this->Url . '/';
+    if (substr($url, -1) != '/') {
+      $url = $url . '/';
     }
 
-    if (substr($this->Url, 0, 1) != '/') {
-      $this->Url = '/' . $this->Url;
+    if (substr($url, 0, 1) != '/') {
+      $url = '/' . $url;
     }
 
-    if (!empty($this->Url)) {
+    if (!empty($url)) {
 
       // getting list of api custom data (url, metatags, etc.)
-      $data = XMLRPCHelper::sendMessage('admin.listCustomUrlTitles');
+      $apiCustomData = XMLRPCHelper::sendMessage('admin.listCustomUrlTitles');
 
       // filtering the data by value of url
       $filter = new ArrayFilter();
-      $data = $filter->filter_by_value($data, 'url', $this->Url);
+      $apiCustomData = $filter->filter_by_value($apiCustomData, 'url', $url);
     }
 
     // setting the charset of section (page)
-    if ($this->Charset = $this->httpRequest->getQuery('charset')) {
-      $this->Charset = strip_tags($this->Charset);
+    if ($charset = $httpRequest->getQuery('charset')) {
+      $charset = strip_tags($charset);
+      
+      //correct charset name
+      if (($charset != 'utf-8') || ($charset != 'windows-1251')) {
+        throw new CHttpException(500, '500 Error');
+      }
+      
+    } else {
+      $charset = Yii::app()->charset;
     }
 
 
     // setting the title of section (page)
-    if ($this->pageTitle = $this->httpRequest->getQuery('title')) {
+    if ($this->pageTitle = $httpRequest->getQuery('title')) {
       $this->pageTitle = strip_tags(urldecode($this->pageTitle));
-      if ($this->Charset != 'utf-8')
-        $this->pageTitle = iconv($this->Charset, 'utf-8', $this->pageTitle);
-    } elseif ($data) {
-      $this->pageTitle = strip_tags($data[0]['title']);
+      if ($charset != Yii::app()->charset)
+        $this->pageTitle = iconv($charset, Yii::app()->charset, $this->pageTitle);
+    } elseif ($apiCustomData) {
+      $this->pageTitle = strip_tags($apiCustomData[0]['title']);
     } else {
       $this->pageTitle = 'Properm.ru';
     }
 
     // setting the caption of section (page)
-    if ($this->Caption = $this->httpRequest->getQuery('caption')) {
-      $this->Caption = strip_tags(urldecode($this->Caption));
-      if ($this->Charset != 'utf-8')
-        $this->Caption = iconv($this->Charset, 'utf-8', $this->Caption);
+    if ($caption = $httpRequest->getQuery('caption')) {
+      $caption = strip_tags(urldecode($caption));
+      if ($charset != Yii::app()->charset)
+        $caption = iconv($charset, Yii::app()->charset, $caption);
     }
 
     // setting the keywords (SEO) of section (page)
-    if ($this->Keywords = $this->httpRequest->getQuery('keywords')) {
-      $this->Keywords = strip_tags(urldecode($this->Keywords));
-      if ($this->Charset != 'utf-8')
-        $this->Keywords = iconv($this->Charset, 'utf-8', $this->Keywords);
-    } elseif ($data) {
-      $this->Keywords = strip_tags($data[0]['keywords']);
+    if ($seoKeywords = $httpRequest->getQuery('keywords')) {
+      $seoKeywords = strip_tags(urldecode($seoKeywords));
+      if ($charset != Yii::app()->charset)
+        $seoKeywords = iconv($charset, Yii::app()->charset, $seoKeywords);
+    } elseif ($apiCustomData) {
+      $seoKeywords = strip_tags($apiCustomData[0]['keywords']);
     }
 
     // setting the description (SEO) of section (page)
-    if ($this->Description = $this->httpRequest->getQuery('description')) {
-      $this->Description = strip_tags(urldecode($this->Description));
-      if ($this->Charset != 'utf-8')
-        $this->Description = iconv($this->Charset, 'utf-8', $this->Description);
-    } elseif ($data) {
-      $this->Description = strip_tags($data[0]['description']);
+    if ($seoDescription = $httpRequest->getQuery('description')) {
+      $seoDescription = strip_tags(urldecode($seoDescription));
+      if ($charset != Yii::app()->charset)
+        $seoDescription = iconv($charset, Yii::app()->charset, $seoDescription);
+    } elseif ($apiCustomData) {
+      $seoDescription = strip_tags($apiCustomData[0]['description']);
     }
 
     // setting the style-files of section (page)
-    if ($this->CssUrl = $this->httpRequest->getQuery('css')) {
-      $this->CssUrl = strip_tags($this->CssUrl);
+    if ($cssUrl = $httpRequest->getQuery('css')) {
+      $cssUrl = strip_tags($cssUrl);
     }
 
     // setting the javascript-files of section (page)
-    if ($this->JsUrl = $this->httpRequest->getQuery('js')) {
-      $this->JsUrl = strip_tags($this->JsUrl);
+    if ($jsUrl = $httpRequest->getQuery('js')) {
+      $jsUrl = strip_tags($jsUrl);
     }
 
     // setting the search-string of section (page)
-    if ($this->Search = $this->httpRequest->getQuery('search')) {
-      $this->Search = intval(strip_tags($this->Search));
+    if ($searchBlock = $httpRequest->getQuery('search')) {
+      $searchBlock = intval(strip_tags($searchBlock));
     }
 
-
     // setting the keywords in the header 
-    if (!empty($this->Keywords)) {
-      Yii::app()->clientScript->registerMetaTag($this->Keywords, 'keywords');
+    if (!empty($seoKeywords)) {
+      Yii::app()->clientScript->registerMetaTag($seoKeywords, 'keywords');
     }
 
     // setting the description in the header
-    if (!empty($this->Description)) {
-      Yii::app()->clientScript->registerMetaTag($this->Description, 'description');
+    if (!empty($seoDescription)) {
+      Yii::app()->clientScript->registerMetaTag($seoDescription, 'description');
     }
 
     // setting the url of style(css) files in the header
-    if (!empty($this->CssUrl)) {
-      $CssFiles = explode(',', $this->CssUrl);
+    if (!empty($cssUrl)) {
+      $CssFiles = explode(',', $cssUrl);
 
       if (is_array($CssFiles)) {
         foreach ($CssFiles as $key => $css) {
           Yii::app()->getClientScript()->registerCssFile($css);
         }
       } else {
-        Yii::app()->getClientScript()->registerCssFile($this->CsssUrl);
+        Yii::app()->getClientScript()->registerCssFile($csUrl);
       }
     }
 
     // setting the url of javascript files in the header
-    if (!empty($this->JsUrl)) {
-      $JsScripts = explode(',', $this->JsUrl);
+    if (!empty($jsUrl)) {
+      $JsScripts = explode(',', $jsUrl);
 
       if (is_array($JsScripts)) {
         foreach ($JsScripts as $key => $js) {
           Yii::app()->getClientScript()->registerScriptFile($js);
         }
       } else {
-        Yii::app()->getClientScript()->registerScriptFile($this->JsUrl);
+        Yii::app()->getClientScript()->registerScriptFile($jsUrl);
       }
     }
 
 
-    $render = $this->render('header', array('url' => $this->Url,
-        'caption' => $this->Caption,
-        'charset' => $this->Charset,
-        'search' => $this->Search), true);
+    $render = $this->render('header', array('url' => $url,
+        'caption' => $caption,
+        'charset' => $charset,
+        'search' => $searchBlock), true);
 
-    if ($this->Charset != 'utf-8') {
-      echo iconv('utf-8', $this->Charset, $render);
-    } else {
-      echo $render;
+    if ($charset != Yii::app()->charset) {
+      $render = iconv(Yii::app()->charset, $charset, $render);
     }
+    
+    echo $render;
   }
 
 }

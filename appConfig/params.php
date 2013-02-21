@@ -6,7 +6,7 @@ $params = array(
         'host' => 'api.newperm.gpor.ru',
         'port' => '80',
         'path' => '/',
-        'key' => ''
+        'key' => 'cfe2b2498aec5b086ac9da1a67bd2fe9'
     )
 );
 

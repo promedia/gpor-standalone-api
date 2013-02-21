@@ -9,6 +9,7 @@ return array(
     'name' => 'API-methods of header and footer getting ',
     // preloading 'log' component
     'preload' => array('log'),
+    'charset'=>'utf-8',
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
