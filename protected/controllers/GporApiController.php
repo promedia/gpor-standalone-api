@@ -71,7 +71,7 @@ class GporApiController extends CController {
         $charset = strip_tags($charset);
 
         //correct charset name
-        if (($charset != 'utf-8') || ($charset != 'windows-1251')) {
+        if (($charset != 'utf-8') && ($charset != 'windows-1251')) {
           throw new CHttpException(500, '500 Error');
         }
         
