@@ -25,12 +25,7 @@
     <link rel="apple-touch-icon" href="<?=Yii::app()->request->getBaseUrl(true)?>/img/apple_touch_icon.png" />
 
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/client.css" rel="stylesheet"  type="text/css" />
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_main.css" rel=stylesheet type="text/css">
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_main_v3.css" rel=stylesheet type="text/css" />
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/old_style.css" rel=stylesheet type="text/css" />
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/style.css" rel=stylesheet type="text/css" /> 
-    
-    <title><?= $this->pageTitle ?></title>
     
     <!--[if lt IE 8]>
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/head.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
@@ -79,6 +74,8 @@
     <!--[if lt IE 8]>
     <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
+    
+    <title><?= $this->pageTitle ?></title>
 
     <script src="<?=Yii::app()->request->getBaseUrl(true)?>/js/client.js"  type="text/javascript"></script>
     <?php //стили и скрипт для поиска ?>
@@ -306,7 +303,7 @@
             <noindex>
               <ul class="head_menu context">
 
-                <li class="head_menu_item-current head_menu_item head_menu_item-has-submenu">
+                <li class="head_menu_item head_menu_item-has-submenu">
                   <a class="head_menu_item_link" href="http://properm.ru/news/">
                     Новости
                         <!--[if lt IE 7]><table class="ie_head_submenu"><tr><td><a><![endif]-->

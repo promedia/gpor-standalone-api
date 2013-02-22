@@ -167,8 +167,14 @@ class GporApiController extends CController {
         }
       }
 
+      // old header?
+      if ($httpRequest->getQuery('legacy')) {
+        $viewName = 'header_old';
+      } else {
+        $viewName = 'header';
+      }
 
-      $render = $this->render('header', array('url' => $url,
+      $render = $this->render($viewName, array('url' => $httpRequest->getQuery('url'),
           'caption' => $caption,
           'charset' => $charset,
           'search' => $searchBlock), true);
