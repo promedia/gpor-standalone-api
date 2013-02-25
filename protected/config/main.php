@@ -40,15 +40,15 @@ return array(
             'urlSuffix' => '/',
             'routeVar' => 'route',
             'rules' => array(
-                '/' => 'GporApi/index',
-                '<action>' => 'GporApi/<action>',
+                '/' => 'gporApi/index',
+                '<action>' => 'gporApi/<action>',
             ),
         ),
     
         'errorHandler'=>array(
-            'errorAction'=>'GporApi/error',
+            'errorAction'=>'gporApi/error',
         ),
-    
+
         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
@@ -69,7 +69,5 @@ return array(
             ),
         ),
     ),
-    // application-level parameters that can be accessed
-    // using Yii::app()->params['paramName']
     'params' => $params,
 );

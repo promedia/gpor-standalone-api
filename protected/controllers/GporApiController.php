@@ -20,6 +20,35 @@ class GporApiController extends CController {
     $this->render('error', array('error' => $error));
   }
 
+  /**
+   * to check for correct token
+   * 
+   * @param type $action
+   * @return boolean
+   * @throws CHttpException
+   */
+  protected function beforeAction($action) {
+    
+    //except index and error actions
+    $actionId = $this->getAction()->getId();
+    if ($actionId == 'error' || $actionId == 'index') {
+      return true;
+    }
+
+    // get token    
+    if (!($externalToken = Yii::app()->getRequest()->getQuery('token'))) {
+      throw new CHttpException(500, '500 Error');
+    }
+
+    foreach (Yii::app()->params->token as $internalToken) {
+      if ($externalToken == $internalToken) {
+        return true;
+      }
+    }
+
+    throw new CHttpException(500, '500 Error');
+  }
+
   /** Function of header forming
    * 
    */
@@ -74,7 +103,6 @@ class GporApiController extends CController {
         if (($charset != 'utf-8') && ($charset != 'windows-1251')) {
           throw new CHttpException(500, '500 Error');
         }
-        
       } else {
         $charset = Yii::app()->charset;
       }
