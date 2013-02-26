@@ -37,7 +37,7 @@ class GporApiController extends CController {
 
     // get token    
     if (!($externalToken = Yii::app()->getRequest()->getQuery('token'))) {
-      throw new CHttpException(500, '500 Error');
+      throw new CHttpException(403, '403 Error');
     }
 
     foreach (Yii::app()->params->token as $internalToken) {
@@ -46,7 +46,7 @@ class GporApiController extends CController {
       }
     }
 
-    throw new CHttpException(500, '500 Error');
+    throw new CHttpException(403, '403 Error');
   }
 
   /** Function of header forming
