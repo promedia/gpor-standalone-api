@@ -227,7 +227,10 @@
                       .head_menu-top .head_menu-top-weather { width: 220px; }
                     </style>
                   <![endif]-->
-                  <? //Блок погоды ?>
+                  <?php //Блок погоды 
+                  
+                  $this->widget('application.components.WeatherInformer');
+                  ?>
                   <!--<div class="head_menu-top-weather context rc5">
                     <div class="head_menu-top-weather-left context">
                       <div class="head_menu-top-weather-left-degree">

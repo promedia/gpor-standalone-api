@@ -275,7 +275,10 @@
          <div class="v5-weather-p v5-weather-br"></div>
         </div>-->
 
-
+<?php //Блок погоды 
+                  
+                  $this->widget('application.components.WeatherInformer', array('legacy' => 'Legacy'));
+                  ?>
 
           <noindex><ul class="v5-menu">
 
