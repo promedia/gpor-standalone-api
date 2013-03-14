@@ -227,44 +227,10 @@
                       .head_menu-top .head_menu-top-weather { width: 220px; }
                     </style>
                   <![endif]-->
-                  <? //Блок погоды ?>
-                  <!--<div class="head_menu-top-weather context rc5">
-                    <div class="head_menu-top-weather-left context">
-                      <div class="head_menu-top-weather-left-degree">
-                        -7
-                      </div>
-
-                      <div class="head_menu-top-weather-left-weather-status">
-                        <table>
-                          <tr><td style="vertical-align: middle;">пасмурно</td></tr>
-                        </table>
-                      </div>		
-
-                      <div class="head_menu-top-weather-right-city">
-                        <a href="http://properm.ru/weather/10/">погода в Перми</a>
-                      </div>
-                    </div>
-                    <div class="head_menu-top-weather-right context ">
-                      <div class="head_menu-top-weather-right-forecast">
-                        <span>ночью: </span>
-                        <span>-12 &deg;C</span>
-                      </div>
-                      <div class="head_menu-top-weather-right-forecast">
-                        <span>завтра: </span>
-                        <span>-7 &deg;C</span>
-                      </div>
-                      <div class="head_menu-top-weather-right-forecast">
-                        <span>послезавтра: </span>
-                        <span>-9 &deg;C</span>
-                      </div>
-                    </div>
-                    <style type="text/css">
-                      .head_menu-weather-status { background-position: 0 -129px; }
-                    </style>
-
-                    <div class="head_menu-weather-status">&nbsp;</div>
-
-                  </div>-->
+                  <?php 
+                  //Блок погоды                   
+                  $this->widget('application.components.WeatherInformer');
+                  ?>
                   <? //Блок валюты ?>
                   <!--<div class="head_menu-top-currency">
                     <table>
