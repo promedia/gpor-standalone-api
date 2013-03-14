@@ -14,7 +14,6 @@
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main_v3.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_style.css" rel=stylesheet type="text/css">
 
-    <title><?= $this->pageTitle ?></title>
 
     <!--[if lte IE 6]>
     <style type="text/css" media="all">
@@ -154,6 +153,8 @@
 //    <script type="text/javascript" src='http://img.properm.ru/js/gifts.js'></script>
     ?>
 
+    <title><?= $this->pageTitle ?></title>
+    
     <script type="text/javascript">var debug = 0;</script>
   </head>
   <body >
