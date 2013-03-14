@@ -246,34 +246,6 @@
            </tr>
           </tbody>
          </table>
-        </div>
-              <div class="v5-weather">
-         <div class="v5-weather-wrap">
-          <div class="v5-weather-p v5-weather-tl"></div>
-          <div class="v5-weather-p v5-weather-tr"></div>
-          <div class="v5-weather-content">
-           <p class="now">
-            <b>+10</b>
-            <span>облачно</span>
-           </p>
-           <p class="icon">
-            <span style="top: -26px;">
-             <img src="http://t.properm.ru/common/img/v5-weather-icons.png" alt="облачно"
-                  title="облачно" />
-            </span>
-           </p>
-           <ul class="next">
-                     <li>ночью: <span>2&deg; C</span></li>
-                                       <li>завтра: <span>13&deg; C</span></li>
-                              <li>послезавтра: <span>15&deg; C</span></li>
-                    </ul>
-           <p class="link">
-            <a href="http://properm.ru/weather/">погода в Перми</a>
-           </p>
-          </div>
-         </div>
-         <div class="v5-weather-p v5-weather-bl"></div>
-         <div class="v5-weather-p v5-weather-br"></div>
         </div>-->
 
 <?php //Блок погоды 
