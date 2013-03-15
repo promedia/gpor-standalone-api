@@ -16,7 +16,7 @@ class GporApiController extends CController {
 
   public function actionError() {
     $error = Yii::app()->errorHandler->error;
-    Yii::log($error, 'error');
+
     $this->render('error', array('error' => $error));
   }
 
