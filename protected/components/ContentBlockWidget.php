@@ -5,7 +5,7 @@
  * 
  * @author l.rusakova
  */
-class WidgetCB extends CWidget {
+class ContentBlockWidget extends CWidget {
 
   public $name = '';
 
@@ -18,7 +18,7 @@ class WidgetCB extends CWidget {
 
     // if isset cache return it
     if ($cachedCB) {
-      $this->render('content_block', array('CB' => $cachedCB));
+      $this->render('ContentBlockView', array('CB' => $cachedCB));
     } else {
 
       // getting name and content of CB
@@ -32,7 +32,7 @@ class WidgetCB extends CWidget {
         Yii::app()->cache->set($cacheKey . '_CB', $CB, $cachingPeriod);
       }
 
-      $this->render('content_block', array('CB' => $CB));
+      $this->render('ContentBlockView', array('CB' => $CB));
     }
   }
 

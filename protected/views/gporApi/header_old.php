@@ -179,7 +179,7 @@
     <!-- Kavanga.AdEngine END -->
 
     <? //КБ с растяжкой ?>
-<?php $this->widget('application.components.WidgetCB', array('name' => 'common_banner_top')); ?>
+    <?php $this->widget('application.components.ContentBlockWidget', array('name' => 'common_banner_top')); ?>
 
     <div id="window"></div>
     <div id="user_info" onmouseout="userinfo_hide()" onmouseover="clearTimeout(ui_t)"></div><div id="overlay"></div>
@@ -195,418 +195,385 @@
             </a>
           </div>
 
-<?php if (!empty($caption) && empty($search)) { ?>
+          <?php if (!empty($caption) && empty($search)) { ?>
             <div class="global-header">
-                — <a href="<?= $url ?>"> <?= $caption ?> </a> </div>
-            
-<?php } ?>
+              — <a href="http://<?= $url ?>"> <?= $caption ?> </a> </div>
+
+          <?php } ?>
           <?php //Блок поиска ?>
           <form action="http://properm.ru/search/" accept-charset="<?= $charset ?>" method="get" <?php if (!empty($search)) { ?>class="v5-search" style="margin-left: 270px;"<?php } else { ?> class="v5-search hidden" autocomplete="off" <?php } ?>>              <p><label for="v5-search-text">Поиск</label></p>
-              <p>
-                <input type="text" class="text"
-                       name="searchString"
-                       value=""
-                       id="v5-search-text" />
-                <input type="submit" class="submit" value="Найти">
-              </p>
-
-            </form>
-          
-
-          <!--<div class="v5-currency">
-               <table>
-          <thead>
-           <tr>
-            <td class="today"><a href="/bank/currency/" name="aa">курсы валют</a></td>
-            <td class="dynamic">сегодня</td>
-            <td class="sizer"></td>
-                     <td class="tomorrow">завтра</td>
-                     <td class="sizer"></td>
-           </tr>
-          </thead>
-          <tbody>
-           <tr>
-            <td class="today">$ 31.3803</td>
-            <td class="dynamic">
-             <span>+</span>          0.3159         </td>
-            <td class="sizer"></td>
-                     <td class="tomorrow">
-             31.6247         </td>
-                     <td class="sizer"></td>
-           </tr>
-           <tr>
-            <td class="today">&euro; 39.7651</td>
-            <td class="dynamic">
-             <span>+</span>          0.0275         </td>
-            <td class="sizer"></td>
-                     <td class="tomorrow">
-             39.7681         </td>
-                     <td class="sizer"></td>
-           </tr>
-          </tbody>
-         </table>
-
-        </div>-->
-       
-
-<?php //Блок погоды 
-                  
-                  $this->widget('application.components.WeatherInformer', array('legacy' => 'Legacy'));
-                  ?>
+            <p>
+              <input type="text" class="text"
+                     name="searchString"
+                     value=""
+                     id="v5-search-text" />
+              <input type="submit" class="submit" value="Найти">
+            </p>
+          </form>
 
 
-          <noindex><ul class="v5-menu">
 
-              <!--<li class="v5-menu-item">
-              <a href="http://properm.ru/" 			>
-                      Главная		</a>
-              
-                              
-                      </li>-->
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/news/" 			>
-                  Новости		</a>
+            <?php
+            //Блок валюты                   
+            $this->widget('application.components.CurrencyInformerWidget', array('legacy' => 'Legacy'));
+
+            //Блок погоды                   
+            $this->widget('application.components.WeatherInformerWidget', array('legacy' => 'Legacy'));
+            ?>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/main/" 							>
-                          Главные						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/society/" 							>
-                          Общество						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/politic/" 							>
-                          Политика						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/afisha/" 							>
-                          Афиша						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/internet/" 							>
-                          Интернет						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/business/" 							>
-                          Бизнес						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/region/" 							>
-                          Регион						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/auto/news/" 							>
-                          Авто						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/sport/" 							>
-                          Спорт						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/bank/news/" 							>
-                          Банки и финансы						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/business/news/" 							>
-                          Новости компаний						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/realty/news/" 							>
-                          Недвижимость						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/incident/" 							>
-                          Происшествия						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/news/authors/" 							>
-                          Авторские колонки						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://video.properm.ru" 							>
-                          Видеоновости						</a>
-                      </li>
-                    </ul>
+            <noindex><ul class="v5-menu">
+
+                <!--<li class="v5-menu-item">
+                <a href="http://properm.ru/" 			>
+                        Главная		</a>
+                
+                                
+                        </li>-->
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/news/" 			>
+                    Новости		</a>
+
+
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/main/" 							>
+                            Главные						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/society/" 							>
+                            Общество						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/politic/" 							>
+                            Политика						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/afisha/" 							>
+                            Афиша						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/internet/" 							>
+                            Интернет						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/business/" 							>
+                            Бизнес						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/region/" 							>
+                            Регион						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/auto/news/" 							>
+                            Авто						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/sport/" 							>
+                            Спорт						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/bank/news/" 							>
+                            Банки и финансы						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/business/news/" 							>
+                            Новости компаний						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/realty/news/" 							>
+                            Недвижимость						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/incident/" 							>
+                            Происшествия						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/news/authors/" 							>
+                            Авторские колонки						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://video.properm.ru" 							>
+                            Видеоновости						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/rabota/" 			>
-                  Работа		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/rabota/" 			>
+                    Работа		</a>
 
 
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/bank/" 			>
-                  Банки		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/bank/" 			>
+                    Банки		</a>
 
 
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://spravka.properm.ru/" 			>
-                  Справка		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://spravka.properm.ru/" 			>
+                    Справка		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/citymap/" 							>
-                          Карта дорог Перми						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://map.properm.ru/" 							>
-                          Панорамы Перми						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/gurman/" 							>
-                          Кафе, бары, рестораны						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://internet.properm.ru/" 							>
-                          Интернет в Перми						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/hotels/" 							>
-                          Гостиницы Перми						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/weather/10/" 							>
-                          Погода в Перми						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/help/price/" 							>
-                          Справочник товаров						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/citymap/" 							>
+                            Карта дорог Перми						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://map.properm.ru/" 							>
+                            Панорамы Перми						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/gurman/" 							>
+                            Кафе, бары, рестораны						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://internet.properm.ru/" 							>
+                            Интернет в Перми						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/hotels/" 							>
+                            Гостиницы Перми						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/weather/10/" 							>
+                            Погода в Перми						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/help/price/" 							>
+                            Справочник товаров						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/auto/" 			>
-                  Авто		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/auto/" 			>
+                    Авто		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/auto/catalog/" 							>
-                          Каталог автомобилей						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/auto/doska/" 							>
-                          Объявления						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/auto/news/" 							>
-                          Новости						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/auto/test-drive/" 							>
-                          Тест-драйвы						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/auto/catalog/" 							>
+                            Каталог автомобилей						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/auto/doska/" 							>
+                            Объявления						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/auto/news/" 							>
+                            Новости						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/auto/test-drive/" 							>
+                            Тест-драйвы						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/realty/" 			>
-                  Недвижимость		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/realty/" 			>
+                    Недвижимость		</a>
 
 
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/doska/" 			>
-                  Объявления		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/doska/" 			>
+                    Объявления		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/doska/add-adv/" 							>
-                          Подать объявление						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/doska/" 							>
-                          Доска объявлений						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/auto/doska/" 							>
-                          Продажа автомобилей						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/doska/realty/" 							>
-                          Недвижимость						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/realty/doska/com/" 							>
-                          Коммерческая недвижимость						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/realty/doska/zagorod/" 							>
-                          Загородная недвижимость						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/doska/my/" 							>
-                          Мои объявления						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/doska/add-adv/" 							>
+                            Подать объявление						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/doska/" 							>
+                            Доска объявлений						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/auto/doska/" 							>
+                            Продажа автомобилей						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/doska/realty/" 							>
+                            Недвижимость						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/realty/doska/com/" 							>
+                            Коммерческая недвижимость						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/realty/doska/zagorod/" 							>
+                            Загородная недвижимость						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/doska/my/" 							>
+                            Мои объявления						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/gurman/" 			>
-                  Еда		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/gurman/" 			>
+                    Еда		</a>
 
 
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/afisha/" 			>
-                  Афиша		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/afisha/" 			>
+                    Афиша		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/afisha/cinema/" 							>
-                          Кино						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/afisha/show/" 							>
-                          Концерты						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/afisha/theater/" 							>
-                          Театры						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/afisha/kinder/" 							>
-                          Для детей						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/afisha/club/" 							>
-                          Вечеринки						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://afisha.properm.ru/horoscope/" 							>
-                          Гороскоп						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/lottery/" 							>
-                          Конкурсы						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/afisha/cinema/" 							>
+                            Кино						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/afisha/show/" 							>
+                            Концерты						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/afisha/theater/" 							>
+                            Театры						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/afisha/kinder/" 							>
+                            Для детей						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/afisha/club/" 							>
+                            Вечеринки						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://afisha.properm.ru/horoscope/" 							>
+                            Гороскоп						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/lottery/" 							>
+                            Конкурсы						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/talk/?bt=1&amp;ct=1" 			>
-                  Общение		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/talk/?bt=1&amp;ct=1" 			>
+                    Общение		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/users/" 							>
-                          Пользователи						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/club/" 							>
-                          Клубы						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://love.properm.ru/" 							>
-                          Знакомства						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/users/" 							>
+                            Пользователи						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/club/" 							>
+                            Клубы						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://love.properm.ru/" 							>
+                            Знакомства						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/photo/" 			>
-                  Фото		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/photo/" 			>
+                    Фото		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/photo/fresh/" 							>
-                          Новые фото						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/photo/mupload/" 							>
-                          Загрузить фото						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/photo/favorite/" 							>
-                          Избранные						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/photo/my/" 							>
-                          Мои фото						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/video/" 							>
-                          Видео						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/video/my/" 							>
-                          Моё видео						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/video/?upload" 							>
-                          Загрузить видео						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/photo/fresh/" 							>
+                            Новые фото						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/photo/mupload/" 							>
+                            Загрузить фото						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/photo/favorite/" 							>
+                            Избранные						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/photo/my/" 							>
+                            Мои фото						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/video/" 							>
+                            Видео						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/video/my/" 							>
+                            Моё видео						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/video/?upload" 							>
+                            Загрузить видео						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="v5-menu-item">
-                <a href="http://properm.ru/my/user/" 			>
-                  Я на Properm.ru		</a>
+                </li>
+                <li class="v5-menu-item">
+                  <a href="http://properm.ru/my/user/" 			>
+                    Я на Properm.ru		</a>
 
 
-                <div class="v5-submenu-wrap">
-                  <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
-                    <ul class="v5-submenu">
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/my/user/" 							>
-                          Мой профиль						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/friends/" 							>
-                          Мои друзья/группы						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/club/my/" 							>
-                          Мои клубы						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/photo/my/" 							>
-                          Мои фото						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/video/my/" 							>
-                          Моё видео						</a>
-                      </li>
-                      <li class="v5-submenu-item">
-                        <a href="http://properm.ru/doska/my/" 							 onclick="window_close(0); auth2_form_show(); return false;">
-                          Мои объявления						</a>
-                      </li>
-                    </ul>
+                  <div class="v5-submenu-wrap">
+                    <div class="v5-submenu"><div class="i-hate-opera">&nbsp;</div>
+                      <ul class="v5-submenu">
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/my/user/" 							>
+                            Мой профиль						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/friends/" 							>
+                            Мои друзья/группы						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/club/my/" 							>
+                            Мои клубы						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/photo/my/" 							>
+                            Мои фото						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/video/my/" 							>
+                            Моё видео						</a>
+                        </li>
+                        <li class="v5-submenu-item">
+                          <a href="http://properm.ru/doska/my/" 							 onclick="window_close(0); auth2_form_show(); return false;">
+                            Мои объявления						</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-          </noindex>    </div>
+                </li>
+              </ul>
+            </noindex>    </div>
       </div>

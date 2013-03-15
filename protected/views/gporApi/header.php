@@ -16,98 +16,98 @@
       });
     </script>-->
 
-    
+
 
     <meta content="text/html; charset=<?= $charset ?>" http-equiv="Content-Type" />
 
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/favicon.ico" type="image/x-icon" rel="icon" />
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/img/icon.ico" type="image/x-icon" rel="shortcut icon" />
-    <link rel="apple-touch-icon" href="<?=Yii::app()->request->getBaseUrl(true)?>/img/apple_touch_icon.png" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/favicon.ico" type="image/x-icon" rel="icon" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/img/icon.ico" type="image/x-icon" rel="shortcut icon" />
+    <link rel="apple-touch-icon" href="<?= Yii::app()->request->getBaseUrl(true) ?>/img/apple_touch_icon.png" />
 
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/client.css" rel="stylesheet"  type="text/css" />
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/style.css" rel=stylesheet type="text/css" /> 
-    
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/client.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style.css" rel=stylesheet type="text/css" /> 
+
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/head.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/head.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/float.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/float.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/common.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/common.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/decorations.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/decorations.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/forms.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/forms.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/b-popup-subscribe__popup.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__subscribe-content.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/b-popup-subscribe__subscribe-content.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <link href="<?=Yii::app()->request->getBaseUrl(true)?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/b-popup-subscribe__buttons.ie.if_lt_IE_8.css" rel="stylesheet"  type="text/css" />
     <![endif]-->
-    
+
     <title><?= $this->pageTitle ?></title>
 
-    <script src="<?=Yii::app()->request->getBaseUrl(true)?>/js/client.js"  type="text/javascript"></script>
+    <script src="<?= Yii::app()->request->getBaseUrl(true) ?>/js/client.js"  type="text/javascript"></script>
     <?php //стили и скрипт для поиска ?>
     <?php if (!empty($search)) { ?>
-    <script type="text/javascript">
-      (function($) {
-        $(function() {
-          var $searchText = $('#v5-search-text');
+      <script type="text/javascript">
+        (function($) {
+          $(function() {
+            var $searchText = $('#v5-search-text');
 
-          $searchText.blur(function() {
-            if(!'кремлевская диета' || this.value.replace(/(^\s+|\s+$)/g, '')) return;
-            $searchText.val('Например: кремлевская диета').addClass('blured');
-          })
-          .focus(function() {
-            if(this.value.replace(/(^\s+|\s+$)/g, '') != 'Например: кремлевская диета') return;
-            $searchText.val('').removeClass('blured');
-          })
-          .parents('form').submit(function() {
-            if($.trim($searchText.val()) != 'Например: кремлевская диета')
-              return;
+            $searchText.blur(function() {
+              if(!'кремлевская диета' || this.value.replace(/(^\s+|\s+$)/g, '')) return;
+              $searchText.val('Например: кремлевская диета').addClass('blured');
+            })
+            .focus(function() {
+              if(this.value.replace(/(^\s+|\s+$)/g, '') != 'Например: кремлевская диета') return;
+              $searchText.val('').removeClass('blured');
+            })
+            .parents('form').submit(function() {
+              if($.trim($searchText.val()) != 'Например: кремлевская диета')
+                return;
 
-            $searchText.val('кремлевская диета').removeClass('blured');
-          }).attr('autocomplete', 'off');
+              $searchText.val('кремлевская диета').removeClass('blured');
+            }).attr('autocomplete', 'off');
 
-          if(!$searchText.val() && 'кремлевская диета')
-            $searchText.addClass('blured').val('Например: кремлевская диета');
+            if(!$searchText.val() && 'кремлевская диета')
+              $searchText.addClass('blured').val('Например: кремлевская диета');
 
-          $.browser.msie && $.browser.version <= 6 ? LoadPng() : '';
-        });
+            $.browser.msie && $.browser.version <= 6 ? LoadPng() : '';
+          });
 
-      })(jQuery);
-    </script>
+        })(jQuery);
+      </script>
     <?php } ?>
 
 
@@ -121,8 +121,8 @@
     <script type="text/javascript">
       /* <![CDATA[ */
       $(document)
-  <?php //Путь до кэша js, css & img в первом параметре был ?>
-  .data('portal.resources', '<?=Yii::app()->request->getBaseUrl(true)?>')
+    <?php //Путь до кэша js, css & img в первом параметре был ?>
+  .data('portal.resources', '<?= Yii::app()->request->getBaseUrl(true) ?>')
   .data('portal.user.id', '')
   .data('portal.user.uid', '')
   .data('portal.user.isInGlobalBan', '')
@@ -144,7 +144,7 @@
     </style>-->
     <!--[if lte IE 6]>
         <style type="text/css">
-            .head_menu-top .head_menu-top-left .head_menu-top-logo a { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?=Yii::app()->request->getBaseUrl(true)?>/img/9666e7a3.png',sizingMethod='scale'); }
+            .head_menu-top .head_menu-top-left .head_menu-top-logo a { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png',sizingMethod='scale'); }
         </style>
     <![endif]-->
   </head>
@@ -185,8 +185,10 @@
 
       <div id="out-head-wrap" >
         <div id="out-head-wrap-content" class="out-head-wrap-content">
-          <? //КБ с растяжкой ?>
-          <?php $this->widget('application.components.WidgetCB', array('name' => 'common_banner_top')); ?>
+          <?php
+          //КБ с растяжкой 
+          $this->widget('application.components.ContentBlockWidget', array('name' => 'common_banner_top'));
+          ?>
         </div>
 
         <div id="head-wrap" class="ie_layout" >
@@ -199,24 +201,24 @@
               <div class="decorationHeaderPic "></div>
               <div class="head_menu-top-left context">
                 <div class="head_menu-top-logo">
-                  <a href="properm.ru/" style="background: url('<?=Yii::app()->request->getBaseUrl(true)?>/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
+                  <a href="properm.ru/" style="background: url('<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
                 </div>
-                
-                <?php if (!empty($search)) { ?>
-                <?php //блок поиска ?>
-                <form action="http://properm.ru/search/" accept-charset="UTF-8" method="get" class="search_form_header" autocomplete="off">
-                  <p><label for="v5-search-text">Поиск</label></p>
-                  <p>
-                    <input type="text" class="search_input_header blured" name="searchString" value="" id="v5-search-text" />
-                    <input type="submit" class="search_submit_header" value="Найти" />
-                  </p>
 
-                </form>
-                  <?php } elseif (!empty($caption)) { ?>
-                <?php //Название раздела ?>
-                <div class="head_menu-top-section" style="left: 229px">
-                    &nbsp;&mdash;&nbsp;<a style="top: 0;" href="<?= $url ?>"><?= $caption ?></a>
-                </div>
+                <?php if (!empty($search)) { ?>
+                  <?php //блок поиска  ?>
+                  <form action="http://properm.ru/search/" accept-charset="UTF-8" method="get" class="search_form_header" autocomplete="off">
+                    <p><label for="v5-search-text">Поиск</label></p>
+                    <p>
+                      <input type="text" class="search_input_header blured" name="searchString" value="" id="v5-search-text" />
+                      <input type="submit" class="search_submit_header" value="Найти" />
+                    </p>
+
+                  </form>
+                <?php } elseif (!empty($caption)) { ?>
+                  <?php //Название раздела  ?>
+                  <div class="head_menu-top-section" style="left: 229px">
+                    &nbsp;&mdash;&nbsp;<a style="top: 0;" href="http://<?= $url ?>"><?= $caption ?></a>
+                  </div>
                 <?php } ?>
               </div>
               <div class="head_menu-top-right context">
@@ -227,41 +229,14 @@
                       .head_menu-top .head_menu-top-weather { width: 220px; }
                     </style>
                   <![endif]-->
-                  <?php 
+                  <?php
                   //Блок погоды                   
-                  $this->widget('application.components.WeatherInformer');
+                  $this->widget('application.components.WeatherInformerWidget');
+
+                  //Блок валюты                   
+                  $this->widget('application.components.CurrencyInformerWidget');
                   ?>
-                  <? //Блок валюты ?>
-                  <!--<div class="head_menu-top-currency">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th class="head_menu-exchange-rates-th"><a class="head_menu-exchange-rates" href="http://newperm.gpor.ru/bank/currency/">курсы валют</a></th>
-                          <th class="head_menu-today"><span class="head_menu-today">на сегодня</span></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="head_menu-exchange-rates-td">
-                            <span class="head_menu-exchange-rates-sign">$</span>
-                            <span class="head_menu-exchange-rates-content">30,1590</span>
-                          </td>
-                          <td class="head_menu-today-td">
-                            <span class="head_menu-today-content">&nbsp;+0.0015</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="head_menu-exchange-rates-td">
-                            <span class="head_menu-exchange-rates-sign head_menu-exchange-rates-sign-e">&euro;</span>
-                            <span class="head_menu-exchange-rates-content">40,3618</span>
-                          </td>
-                          <td class="head_menu-today-td">
-                            <span class="head_menu-today-content">&nbsp;&ndash;0.0553</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>-->
+
                 </noindex>
               </div>
             </div>
@@ -874,7 +849,7 @@
                   <!--[if lt IE 7]></td></tr></table></a><![endif]-->
 
                 </li>
-                <? //Плашка регистрации/залогиненого пользователя ?>
+                <? //Плашка регистрации/залогиненого пользователя  ?>
                 <!--<li class="head_menu_item head_menu_item-begin rc3">
                   <span style="display: none; position: absolute;" id="host_for_login" class="properm.ru"></span>
                   <a class="head_menu_item-login inline-block gpor_auth" onclick="return false;" href="http://auth.properm.ru/?providers_set=properm,vk,fb,tw,lj&amp;redirectUrl=http%3A%2F%2Fproperm.ru%2Fnewgporlogin%2F&amp;returnUrl=http%3A%2F%2Fproperm.ru%2Fnews%2F&amp;rand=438983">Войти</a>
