@@ -458,7 +458,7 @@
                   <!--[if lt IE 7]></td></tr></table></a><![endif]-->
 
                 </li>
-                <li class="head_menu_item head_menu_item-has-submenu">
+                <li class="head_menu_item-current head_menu_item head_menu_item-has-submenu">
                   <a class="head_menu_item_link" href="http://spravka.properm.ru/">
                     Справка
                         <!--[if lt IE 7]><table class="ie_head_submenu"><tr><td><a><![endif]-->

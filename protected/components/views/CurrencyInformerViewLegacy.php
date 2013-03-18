@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <td class="today"><a href="/bank/currency/" name="aa">курсы валют</a></td>
+        <td class="today"><a href="http://properm.ru/bank/currency/" name="aa">курсы валют</a></td>
         <td class="dynamic">сегодня</td>
       </tr>
     </thead>

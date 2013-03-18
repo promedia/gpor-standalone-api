@@ -314,7 +314,7 @@
 
 
                 </li>
-                <li class="v5-menu-item">
+                <li class="v5-menu-item current">
                   <a href="http://spravka.properm.ru/" 			>
                     Справка		</a>
 

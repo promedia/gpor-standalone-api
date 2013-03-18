@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <th class="head_menu-exchange-rates-th"><a class="head_menu-exchange-rates" href="http://newperm.gpor.ru/bank/currency/">курсы валют</a></th>
+        <th class="head_menu-exchange-rates-th"><a class="head_menu-exchange-rates" href="http://properm.ru/bank/currency/">курсы валют</a></th>
         <th class="head_menu-today"><span class="head_menu-today">на сегодня</span></th>
       </tr>
     </thead>
