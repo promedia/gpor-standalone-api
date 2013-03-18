@@ -4,7 +4,7 @@
     <div class="v5-weather-p v5-weather-tr"></div>
     <div class="v5-weather-content">
       <p class="now">
-        <b><?php echo $data['current']['temperature']; ?></b>
+        <b><?php if ($data['current']['temperature'] > 0) echo '+'; ?><?php echo $data['current']['temperature']; ?></b>
         <span><?php echo $data['current']['precipitationText']; ?></span>
       </p>
       <p class="icon">
@@ -13,9 +13,9 @@
         </span>
       </p>
       <ul class="next">
-        <li>ночью: <span><?php echo $data['nextWeather']['night']; ?>° C</span></li>
-        <li>завтра: <span><?php echo $data['nextWeather']['tomorrow']; ?>° C</span></li>
-        <li>послезавтра: <span><?php echo $data['nextWeather']['afterTomorrow']; ?>° C</span></li>
+        <li>ночью: <span><?php if ($data['nextWeather']['night'] > 0) echo '+'; ?><?php echo $data['nextWeather']['night']; ?>° C</span></li>
+        <li>завтра: <span><?php if ($data['nextWeather']['tomorrow'] > 0) echo '+'; ?><?php echo $data['nextWeather']['tomorrow']; ?>° C</span></li>
+        <li>послезавтра: <span><?php if ($data['nextWeather']['afterTomorrow'] > 0) echo '+'; ?><?php echo $data['nextWeather']['afterTomorrow']; ?>° C</span></li>
       </ul>
       <p class="link">
         <a href="http://properm.ru/weather/">погода в Перми</a>

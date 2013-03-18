@@ -1,7 +1,7 @@
 <div class="head_menu-top-weather context rc5">
 	<div class="head_menu-top-weather-left context">
 		<div class="head_menu-top-weather-left-degree">
-			<?php echo $data['current']['temperature']; ?>
+			<?php if ($data['current']['temperature'] > 0) echo '+'; ?><?php echo $data['current']['temperature']; ?>
 		</div>
 		
 		<div class="head_menu-top-weather-left-weather-status">
@@ -17,15 +17,15 @@
 	<div class="head_menu-top-weather-right context ">
 		<div class="head_menu-top-weather-right-forecast">
 			<span>ночью: </span>
-			<span><?php echo $data['nextWeather']['night']; ?> °C</span>
+			<span><?php if ($data['nextWeather']['night'] > 0) echo '+'; ?><?php echo $data['nextWeather']['night']; ?> °C</span>
 		</div>
 		<div class="head_menu-top-weather-right-forecast">
 			<span>завтра: </span>
-			<span><?php echo $data['nextWeather']['tomorrow']; ?> °C</span>
+			<span><?php if ($data['nextWeather']['tomorrow'] > 0) echo '+'; ?><?php echo $data['nextWeather']['tomorrow']; ?> °C</span>
 		</div>
 		<div class="head_menu-top-weather-right-forecast">
 			<span>послезавтра: </span>
-			<span><?php echo $data['nextWeather']['afterTomorrow']; ?> °C</span>
+			<span><?php if ($data['nextWeather']['afterTomorrow'] > 0) echo '+'; ?><?php echo $data['nextWeather']['afterTomorrow']; ?> °C</span>
 		</div>
 	</div>
 	<style type="text/css">
