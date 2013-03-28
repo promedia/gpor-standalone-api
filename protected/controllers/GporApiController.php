@@ -194,6 +194,9 @@ class GporApiController extends CController {
           Yii::app()->getClientScript()->registerScriptFile($jsUrl);
         }
       }
+			
+			// what ContentBlock for header we want?
+      $headerCB = $httpRequest->getQuery('header_cb') ? $httpRequest->getQuery('header_cb') : 'common_banner_top';
 
       // old header?
       if ($httpRequest->getQuery('legacy')) {
@@ -205,7 +208,8 @@ class GporApiController extends CController {
       $render = $this->render($viewName, array('url' => $httpRequest->getQuery('url'),
           'caption' => $caption,
           'charset' => $charset,
-          'search' => $searchBlock), true);
+          'search' => $searchBlock,
+          'headerCB' => $headerCB), true);
 
       if ($charset != Yii::app()->charset) {
         $render = iconv(Yii::app()->charset, $charset, $render);

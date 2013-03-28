@@ -179,7 +179,7 @@
     <!-- Kavanga.AdEngine END -->
 
     <? //КБ с растяжкой ?>
-    <?php $this->widget('application.components.ContentBlockWidget', array('name' => 'common_banner_top')); ?>
+    <?php $this->widget('application.components.ContentBlockWidget', array('name' => $headerCB)); ?>
 
     <div id="window"></div>
     <div id="user_info" onmouseout="userinfo_hide()" onmouseover="clearTimeout(ui_t)"></div><div id="overlay"></div>

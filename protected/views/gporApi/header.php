@@ -187,7 +187,7 @@
         <div id="out-head-wrap-content" class="out-head-wrap-content">
           <?php
           //КБ с растяжкой 
-          $this->widget('application.components.ContentBlockWidget', array('name' => 'common_banner_top'));
+          $this->widget('application.components.ContentBlockWidget', array('name' => $headerCB));
           ?>
         </div>
 
