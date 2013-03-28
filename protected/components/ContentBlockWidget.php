@@ -21,18 +21,23 @@ class ContentBlockWidget extends CWidget {
       $this->render('ContentBlockView', array('CB' => $cachedCB));
     } else {
 
-      // getting name and content of CB
-      $CB = XMLRPCHelper::sendMessage('contextblock.get', $this->name);
+      try {
+        // getting name and content of CB
+        $CB = XMLRPCHelper::sendMessage('contextblock.get', $this->name);
 
-      // set cahce
-      if (!empty($CB)) {
-        $cachingPeriod = !empty(Yii::app()->params['cachingPeriod']['CB'][$this->name]) ?
-                Yii::app()->params['cachingPeriod']['CB'][$this->name] : Yii::app()->params['cachingPeriod']['CB']['default'];
+        // set cahce
+        if (!empty($CB)) {
+          $cachingPeriod = !empty(Yii::app()->params['cachingPeriod']['CB'][$this->name]) ?
+                  Yii::app()->params['cachingPeriod']['CB'][$this->name] : Yii::app()->params['cachingPeriod']['CB']['default'];
+
+          Yii::app()->cache->set($cacheKey . '_CB', $CB, $cachingPeriod);
+
+          $this->render('ContentBlockView', array('CB' => $CB));
+        }
         
-        Yii::app()->cache->set($cacheKey . '_CB', $CB, $cachingPeriod);
+      } catch (Exception $e) {
+        Yii::log('500 error trying to get CB '. $this->name, 'error');
       }
-
-      $this->render('ContentBlockView', array('CB' => $CB));
     }
   }
 
