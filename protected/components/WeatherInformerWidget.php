@@ -30,7 +30,7 @@ class WeatherInformerWidget extends CWidget {
       if (is_array($arrWeatherData) && isset($arrWeatherData['current'])) {
         
         // save cahce
-        Yii::app()->cache->set($cacheKey, $arrWeatherData, 60 * 60);
+        Yii::app()->cache->set($cacheKey, $arrWeatherData, $cacheTime);
 
         $this->render('WeatherInformerView' . $this->legacy, array('data' => $arrWeatherData));
       }

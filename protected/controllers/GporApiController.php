@@ -8,8 +8,9 @@
  * API-methods of header and footer getting controller
  *  
  */
-class GporApiController extends CController {
 
+class GporApiController extends CController {
+  
   public function actionIndex() {
     throw new CHttpException(404, '404 Error');
   }
@@ -205,11 +206,14 @@ class GporApiController extends CController {
         $viewName = 'header';
       }
 
+      $authUser = 'false';
+      
       $render = $this->render($viewName, array('url' => $httpRequest->getQuery('url'),
           'caption' => $caption,
           'charset' => $charset,
           'search' => $searchBlock,
-          'headerCB' => $headerCB), true);
+          'headerCB' => $headerCB,
+          'authUser' => $authUser), true);
 
       if ($charset != Yii::app()->charset) {
         $render = iconv(Yii::app()->charset, $charset, $render);
