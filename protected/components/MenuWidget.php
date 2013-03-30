@@ -24,7 +24,7 @@ class MenuWidget extends CWidget {
         // if isset cache return it
         if ($widgetCache) {
 
-            $this->render('MenuView' . $this->legacy, array('data' => $widgetCache));
+            echo $widgetCache;
         } else {
 
             $cacheTime = !empty(Yii::app()->params['cachingPeriod']['menu']) ? Yii::app()->params['cachingPeriod']['menu'] : 24 * 60 * 60;
@@ -48,10 +48,12 @@ class MenuWidget extends CWidget {
 
             if (is_array($arrMenuData)) {
 
-                // save cache
-                Yii::app()->cache->set($cacheKey, $arrMenuData, $cacheTime);
+                $render = $this->render('MenuView' . $this->legacy, array('data' => $arrMenuData, 'activeItem' => $activeItemId), true);
+				
+				echo $render;
 
-                $this->render('MenuView' . $this->legacy, array('data' => $arrMenuData, 'activeItem' => $activeItemId));
+				// save cache
+                Yii::app()->cache->set($cacheKey, $render, $cacheTime);
             }
         }
     }
