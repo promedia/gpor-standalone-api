@@ -16,22 +16,8 @@ class MenuWidget extends CWidget {
         // get page url
         $pageUrl = Yii::app()->request->getQuery('url');
 
-        // get rules for checked menu items from 66 api
-        $arrRules = XMLRPCHelper::sendMessage('admin.listMenuCheckedRules');
-
-        // get active item of menu
-        foreach ($arrRules as $rule) {
-            $mask = addcslashes($rule['rule'], '/');
-            $mask = preg_replace('/\*/', '(.*)', $mask);
-
-            if (preg_match('/^' . $mask . '$/', $pageUrl)) {
-                $activeItemId = $rule['siteMenuItemId'];
-                break;
-            }
-        }
-
         // get cache
-        $cacheKey = md5(serialize(array('type' => 'menu', 'activeItem' => $activeItemId, 'authUser' => $this->authUser)));
+        $cacheKey = md5(serialize(array('type' => 'menu', 'authUser' => $this->authUser, 'url' => $pageUrl, 'legacy' => $this->legacy)));
 
         $widgetCache = Yii::app()->cache->get($cacheKey);
 
@@ -42,6 +28,20 @@ class MenuWidget extends CWidget {
         } else {
 
             $cacheTime = !empty(Yii::app()->params['cachingPeriod']['menu']) ? Yii::app()->params['cachingPeriod']['menu'] : 24 * 60 * 60;
+
+            // get rules for checked menu items from 66 api
+            $arrRules = XMLRPCHelper::sendMessage('admin.listMenuCheckedRules');
+
+            // get active item of menu
+            foreach ($arrRules as $rule) {
+                $mask = addcslashes($rule['rule'], '/');
+                $mask = preg_replace('/\*/', '(.*)', $mask);
+
+                if (preg_match('/^' . $mask . '$/', $pageUrl)) {
+                    $activeItemId = $rule['siteMenuItemId'];
+                    break;
+                }
+            }
 
             // get rules for checked menu items from 66 api
             $arrMenuData = XMLRPCHelper::sendMessage('admin.listMenu');
