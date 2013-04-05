@@ -1172,3 +1172,70 @@ div.auto-news-view-text div.test-drive.negative div.comment h4  {
   background: url('http://t.properm.ru/news/img/test-drive-negative-icon.png') no-repeat 0 0;
   color: #9C2006;
 }
+
+.new-login {
+display: inline-block;
+float: right;
+padding: 5px;
+position: relative;
+top: 4px;
+}
+
+.new-login-content {
+position: relative;
+top: -2px;
+}
+
+a.head_menu_item-login {
+background: url(http://t.properm.ru/common/img/inner-btn-bg.png) 0 0 no-repeat;
+width: 40px;
+height: 22px;
+position: relative;
+line-height: 22px;
+text-align: center;
+border: none;
+text-decoration: none;
+color: #000;
+font-size: 12px;
+font-weight: bold;
+position: relative;
+top: -4px;
+display: inline-block;
+}
+
+.inline-block {
+display: inline-block;
+}
+
+.head_menu_item_label {
+color: #fff;
+font-size: 12px;
+position: relative;
+top: -4px;
+margin-left: 5px;
+margin-right: 0px;
+}
+
+.g-icons__middle-vk {
+background-position: 0 0px;
+}
+
+.g-icons__middle-fb {
+background-position: -22px 0;
+}
+
+.g-icons__middle-tw {
+background-position: -43px 0;
+}
+
+.g-icons__middle-lj {
+background-position: -64px 0;
+}
+
+.g-icons__middle-vk, .g-icons__middle-lj, .g-icons__middle-fb, .g-icons__middle-tw, .g-icons__middle-more {
+background-image: url(http://t.properm.ru/common/img/social-middle-icons.png);
+background-repeat: no-repeat;
+width: 16px;
+height: 16px;
+display: inline-block;
+}
