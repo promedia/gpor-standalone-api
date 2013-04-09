@@ -13,6 +13,7 @@
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main_v3.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_style.css" rel=stylesheet type="text/css">
+		<link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style__new.css" rel=stylesheet type="text/css">
 
 
     <!--[if lte IE 6]>
@@ -157,7 +158,9 @@
     <script type="text/javascript">var debug = 0;</script>
   </head>
   <body >
- 
+
+
+
 
     <!-- cbcb id122 --><!-- Kavanga.AdEngine START -->
     <!-- ѕро ѕермь и ѕермский край -->
@@ -217,9 +220,6 @@
 
           //Блок погоды                   
           $this->widget('application.components.WeatherInformerWidget', array('legacy' => 'Legacy'));
-          
-          //Блок авторизации                   
-          $this->widget('application.components.UserPanelWidget', array('legacy' => 'Legacy', 'authUser' => $authUser));
           ?>
 
 
