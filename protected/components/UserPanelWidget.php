@@ -5,32 +5,24 @@
  */
 class UserPanelWidget extends CWidget {
 
-  public $userData = array();
+  public $authUser = array();
   public $legacy = '';
 
   public function run() {
 
-    // user data ?
-    $this->userData = AuthHelper::isAuth();
-    if ($this->userData) {
-      // get cache
-      $cacheKey = md5(serialize(array('type' => 'user_pane', 'user' => $this->userData['serviceId'])));
-      $view = 'AuthUserPanelView' . $this->legacy;
-    } else {
-      // get cache
-      $cacheKey = md5(serialize(array('type' => 'user_pane', 'user' => 0)));
-      $view = 'UserPanelView' . $this->legacy;
-    }
-
-    $widgetCache = Yii::app()->cache->get($cacheKey);
-
-    if ($widgetCache) {
-      $cacheTime = !empty(Yii::app()->params['cachingPeriod']['currencyInformer']) ? Yii::app()->params['cachingPeriod']['currencyInformer'] : 60 * 60;
-
-      $this->render($view, array('user' => $widgetCache));
-    } else {
-
-      $this->render($view, array('user' => $this->userData));
+    // authorization backend host
+    $authHost = Yii::app()->params['authData']['authHost'];
+    $returnUrl = Yii::app()->getRequest()->getQuery('returnUrl');
+    $redirectUrl = Yii::app()->getRequest()->getQuery('redirectUrl');
+    
+    // we can't make authorization without this params
+    if ($authHost && $returnUrl && $redirectUrl) {
+      if ($this->authUser['response']) {
+        $view = 'AuthUserPanelView' . $this->legacy;
+      } else {
+        $view = 'UserPanelView' . $this->legacy;
+      }
+      $this->render($view, array('data' => $this->authUser['data'], 'authHost' => $authHost, 'returnUrl' => $returnUrl, 'redirectUrl' => $redirectUrl));
     }
   }
 

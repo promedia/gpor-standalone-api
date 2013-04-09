@@ -65,6 +65,13 @@ return array(
                     'levels' => 'error',
                     'categories' => 'exception.CHttpException.404',
                     'enabled' => true,
+                ),  
+								array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'trace',
+                    'categories' => 'application.*',
+                    'logFile' => 'app_trace.log',
+                    'enabled' => true,
                 ),
             ),
         ),

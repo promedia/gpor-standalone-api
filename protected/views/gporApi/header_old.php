@@ -157,9 +157,7 @@
     <script type="text/javascript">var debug = 0;</script>
   </head>
   <body >
-
-
-
+ 
 
     <!-- cbcb id122 --><!-- Kavanga.AdEngine START -->
     <!-- ѕро ѕермь и ѕермский край -->
@@ -221,7 +219,7 @@
           $this->widget('application.components.WeatherInformerWidget', array('legacy' => 'Legacy'));
           
           //Блок авторизации                   
-          $this->widget('application.components.UserPanelWidget', array('legacy' => 'Legacy'));
+          $this->widget('application.components.UserPanelWidget', array('legacy' => 'Legacy', 'authUser' => $authUser));
           ?>
 
 

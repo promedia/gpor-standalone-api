@@ -8,9 +8,14 @@
  * API-methods of header and footer getting controller
  *  
  */
-
 class GporApiController extends CController {
-  
+
+  /**
+   * Object of CHttpRequest class
+   * @var object 
+   */
+  protected $httpRequest;
+
   public function actionIndex() {
     throw new CHttpException(404, '404 Error');
   }
@@ -29,15 +34,16 @@ class GporApiController extends CController {
    * @throws CHttpException
    */
   protected function beforeAction($action) {
-    
     //except index and error actions
     $actionId = $this->getAction()->getId();
     if ($actionId == 'error' || $actionId == 'index') {
       return true;
     }
 
+    $this->httpRequest = Yii::app()->getRequest();
+
     // get token    
-    if (!($externalToken = Yii::app()->getRequest()->getQuery('token'))) {
+    if (!($externalToken = $this->httpRequest->getQuery('token'))) {
       throw new CHttpException(403, '403 Error');
     }
 
@@ -55,21 +61,21 @@ class GporApiController extends CController {
    */
   public function actionGetHeader() {
 
-    $httpRequest = Yii::app()->getRequest();
-
+    // check user authorization
+    $authUser = AuthHelper::isAuth();
+   
     // cache hash
-    $cacheKey = md5($httpRequest->getRequestUri());
+    $cacheKey = md5($this->httpRequest->getRequestUri());
 
-    $cachedHeader = Yii::app()->cache->get($cacheKey . '_header');
+    $cachedHeader = Yii::app()->cache->get($cacheKey . '_header_' . $authUser['response']);
 
     // if isset cache return it
     if ($cachedHeader) {
       echo $cachedHeader;
-      
     } else {
 
       // setting the url of section (page)
-      if (!($url = $httpRequest->getQuery('url'))) {
+      if (!($url = $this->httpRequest->getQuery('url'))) {
         throw new CHttpException(500, '500 Error');
       }
 
@@ -97,7 +103,7 @@ class GporApiController extends CController {
       }
 
       // setting the charset of section (page)
-      if ($charset = $httpRequest->getQuery('charset')) {
+      if ($charset = $this->httpRequest->getQuery('charset')) {
         $charset = strip_tags($charset);
 
         //correct charset name
@@ -110,7 +116,7 @@ class GporApiController extends CController {
 
 
       // setting the title of section (page)
-      if ($this->pageTitle = $httpRequest->getQuery('title')) {
+      if ($this->pageTitle = $this->httpRequest->getQuery('title')) {
         $this->pageTitle = strip_tags(urldecode($this->pageTitle));
         if ($charset != Yii::app()->charset)
           $this->pageTitle = iconv($charset, Yii::app()->charset, $this->pageTitle);
@@ -121,14 +127,14 @@ class GporApiController extends CController {
       }
 
       // setting the caption of section (page)
-      if ($caption = $httpRequest->getQuery('caption')) {
+      if ($caption = $this->httpRequest->getQuery('caption')) {
         $caption = strip_tags(urldecode($caption));
         if ($charset != Yii::app()->charset)
           $caption = iconv($charset, Yii::app()->charset, $caption);
       }
 
       // setting the keywords (SEO) of section (page)
-      if ($seoKeywords = $httpRequest->getQuery('keywords')) {
+      if ($seoKeywords = $this->httpRequest->getQuery('keywords')) {
         $seoKeywords = strip_tags(urldecode($seoKeywords));
         if ($charset != Yii::app()->charset)
           $seoKeywords = iconv($charset, Yii::app()->charset, $seoKeywords);
@@ -137,7 +143,7 @@ class GporApiController extends CController {
       }
 
       // setting the description (SEO) of section (page)
-      if ($seoDescription = $httpRequest->getQuery('description')) {
+      if ($seoDescription = $this->httpRequest->getQuery('description')) {
         $seoDescription = strip_tags(urldecode($seoDescription));
         if ($charset != Yii::app()->charset)
           $seoDescription = iconv($charset, Yii::app()->charset, $seoDescription);
@@ -146,17 +152,17 @@ class GporApiController extends CController {
       }
 
       // setting the style-files of section (page)
-      if ($cssUrl = $httpRequest->getQuery('css')) {
+      if ($cssUrl = $this->httpRequest->getQuery('css')) {
         $cssUrl = strip_tags($cssUrl);
       }
 
       // setting the javascript-files of section (page)
-      if ($jsUrl = $httpRequest->getQuery('js')) {
+      if ($jsUrl = $this->httpRequest->getQuery('js')) {
         $jsUrl = strip_tags($jsUrl);
       }
 
       // setting the search-string of section (page)
-      if ($searchBlock = $httpRequest->getQuery('search')) {
+      if ($searchBlock = $this->httpRequest->getQuery('search')) {
         $searchBlock = intval(strip_tags($searchBlock));
       }
 
@@ -195,25 +201,24 @@ class GporApiController extends CController {
           Yii::app()->getClientScript()->registerScriptFile($jsUrl);
         }
       }
-			
-			// what ContentBlock for header we want?
-      $headerCB = $httpRequest->getQuery('header_cb') ? $httpRequest->getQuery('header_cb') : 'common_banner_top';
+
+      // what ContentBlock for header we want?
+      $headerCB = $this->httpRequest->getQuery('header_cb') ? $this->httpRequest->getQuery('header_cb') : 'common_banner_top';
 
       // old header?
-      if ($httpRequest->getQuery('legacy')) {
+      if ($this->httpRequest->getQuery('legacy')) {
         $viewName = 'header_old';
       } else {
         $viewName = 'header';
       }
 
-      $authUser = 'false';
-      
-      $render = $this->render($viewName, array('url' => $httpRequest->getQuery('url'),
+      $render = $this->render($viewName, array('url' => $this->httpRequest->getQuery('url'),
           'caption' => $caption,
           'charset' => $charset,
           'search' => $searchBlock,
           'headerCB' => $headerCB,
-          'authUser' => $authUser), true);
+          'authUser' => $authUser,
+          'uri' => $this->httpRequest->getRequestUri()), true);
 
       if ($charset != Yii::app()->charset) {
         $render = iconv(Yii::app()->charset, $charset, $render);
@@ -222,6 +227,23 @@ class GporApiController extends CController {
       echo $render;
 
       Yii::app()->cache->set($cacheKey . '_header', $render, Yii::app()->params['cachingPeriod']['header']);
+    }
+  }
+
+  /** Function of header forming
+   * 
+   */
+  public function actionCheckAuth() {
+
+    $authToken = $this->httpRequest->getQuery('auth_token');
+
+    if (!empty($authToken)) {
+
+      $authUser = AuthHelper::checkAuthToken($authToken);
+
+      if ($authUser) {
+        echo $authUser;
+      }
     }
   }
 

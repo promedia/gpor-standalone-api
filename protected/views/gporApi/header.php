@@ -249,7 +249,7 @@
                 $this->widget('application.components.MenuWidget', array('authUser' => $authUser)); 
                 
                 //Блок авторизации                   
-                $this->widget('application.components.UserPanelWidget');
+                $this->widget('application.components.UserPanelWidget', array('authUser' => $authUser));
               ?>
             </noindex>
 

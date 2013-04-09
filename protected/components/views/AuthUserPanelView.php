@@ -1,8 +1,8 @@
 <li class="head_menu_item head_menu_item-profile">
   <div class="profile-logo rc5 context">
-    <a class="profile-nick-name profile-nick-properm" href="<?php echo $user->url?>"><?php echo $user->username?></a>
+    <a class="profile-nick-name profile-nick-properm" href="<?php echo $data['user']->url?>"><?php echo $data['user']->username?></a>
     <a class="profile-nick-logout" 
-       href="<?php echo Yii::app()->params['authData']['authHost']?>/logout/?token=e99dafa443bdf3d09563e5178009f76e&amp;returnUrl=<?php echo Yii::app()->createAbsoluteUrl(Yii::app()->request->url)?>" title="выйти"></a>
+       href="<?php echo $authHost;?>/logout/?token=<?php echo $data['token'];?>&amp;returnUrl=<?php echo $returnUrl;?>" title="выйти"></a>
   </div>
 
   <span id="mailCount"></span>
