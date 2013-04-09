@@ -220,8 +220,10 @@
 
           //Блок погоды                   
           $this->widget('application.components.WeatherInformerWidget', array('legacy' => 'Legacy'));
-          ?>
-
+          
+          //Блок авторизации                   
+          $this->widget('application.components.UserPanelWidget', array('legacy' => 'Legacy', 'authUser' => $authUser));
+?>
 
           <noindex>
             <?php
