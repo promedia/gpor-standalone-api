@@ -13,7 +13,7 @@
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main_v3.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_style.css" rel=stylesheet type="text/css">
-		<link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style__new.css" rel=stylesheet type="text/css">
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style__new.css" rel=stylesheet type="text/css">
 
 
     <!--[if lte IE 6]>
@@ -157,10 +157,7 @@
     <title><?= $this->pageTitle ?></title>
     <script type="text/javascript">var debug = 0;</script>
   </head>
-  <body >
-
-
-
+  <body>
 
     <!-- cbcb id122 --><!-- Kavanga.AdEngine START -->
     <!-- ѕро ѕермь и ѕермский край -->
@@ -215,20 +212,29 @@
 
 
           <?php
-          //Блок валюты                   
+          //Блок валюты   
+          Yii::beginProfile('CurrencyInformerWidget');
           $this->widget('application.components.CurrencyInformerWidget', array('legacy' => 'Legacy'));
+          Yii::endProfile('CurrencyInformerWidget');
 
-          //Блок погоды                   
+          //Блок погоды         
+          Yii::beginProfile('WeatherInformerWidget');
           $this->widget('application.components.WeatherInformerWidget', array('legacy' => 'Legacy'));
-          
+          Yii::endProfile('WeatherInformerWidget');
+
           //Блок авторизации                   
+          Yii::beginProfile('UserPanelWidget');
           $this->widget('application.components.UserPanelWidget', array('legacy' => 'Legacy', 'authUser' => $authUser));
-?>
+          Yii::endProfile('UserPanelWidget');
+          ?>
+
 
           <noindex>
             <?php
             // Блок меню
+            Yii::beginProfile('MenuWidget');
             $this->widget('application.components.MenuWidget', array('legacy' => 'Legacy', 'authUser' => $authUser));
+            Yii::endProfile('MenuWidget');
             ?>
           </noindex>    
         </div>

@@ -73,6 +73,11 @@ return array(
                     'logFile' => 'app_trace.log',
                     'enabled' => true,
                 ),
+                array(
+                    'class' => 'CProfileLogRoute',
+                    'levels' => 'error, warning, trace, info, profile',
+                    'enabled' => false,
+                ),
             ),
         ),
     ),

@@ -61,19 +61,25 @@ class GporApiController extends CController {
    */
   public function actionGetHeader() {
 
+    Yii::beginProfile('actionGetHeader');
+
+    Yii::beginProfile('AuthHelper::isAuth');
+	
     // check user authorization
     $authUser = AuthHelper::isAuth();
    
+    Yii::endProfile('AuthHelper::isAuth');
     // cache hash
-    $cacheKey = md5($this->httpRequest->getRequestUri());
+    $cacheKey = md5($this->httpRequest->getRequestUri(). $authUser['response']);
 
-    $cachedHeader = Yii::app()->cache->get($cacheKey . '_header_' . $authUser['response']);
+    $cachedHeader = Yii::app()->cache->get($cacheKey . '_header');
 
     // if isset cache return it
     if ($cachedHeader) {
       echo $cachedHeader;
     } else {
 
+			Yii::beginProfile('getData');
       // setting the url of section (page)
       if (!($url = $this->httpRequest->getQuery('url'))) {
         throw new CHttpException(500, '500 Error');
@@ -224,16 +230,22 @@ class GporApiController extends CController {
         $render = iconv(Yii::app()->charset, $charset, $render);
       }
 
-      echo $render;
+			Yii::endProfile('getData');
 
-      Yii::app()->cache->set($cacheKey . '_header', $render, Yii::app()->params['cachingPeriod']['header']);
+      Yii::beginProfile('render');     
+			
+			echo $render;
+      Yii::endProfile('render');
+			Yii::app()->cache->set($cacheKey . '_header', $render, Yii::app()->params['cachingPeriod']['header']);
     }
+		Yii::endProfile('actionGetHeader');
   }
 
   /** Function of header forming
    * 
    */
   public function actionCheckAuth() {
+    Yii::beginProfile('actionCheckAuth');
 
     $authToken = $this->httpRequest->getQuery('auth_token');
 
@@ -245,6 +257,7 @@ class GporApiController extends CController {
         echo $authUser;
       }
     }
+    Yii::endProfile('actionCheckAuth');
   }
 
 }
