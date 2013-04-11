@@ -213,7 +213,7 @@ class GporApiController extends CController {
 
       // old header?
       if ($this->httpRequest->getQuery('legacy')) {
-        $viewName = 'header_old';
+        $viewName = 'headerLegacy';
       } else {
         $viewName = 'header';
       }

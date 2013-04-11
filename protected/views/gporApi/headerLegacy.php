@@ -12,8 +12,8 @@
 
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main_v3.css" rel=stylesheet type="text/css">
-    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_style.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style__new.css" rel=stylesheet type="text/css">
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_style.css" rel=stylesheet type="text/css">
 
 
     <!--[if lte IE 6]>
