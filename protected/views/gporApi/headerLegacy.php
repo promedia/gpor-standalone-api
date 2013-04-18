@@ -188,7 +188,7 @@
             <a href="http://properm.ru/">
 
 
-              <i><img src="http://properm.ru/img/properm _header.png" /></i>
+              <i><img src="<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png" /></i>
 
             </a>
           </div>
@@ -214,12 +214,12 @@
           <?php
           //Блок валюты   
           Yii::beginProfile('CurrencyInformerWidget');
-          $this->widget('application.components.CurrencyInformerWidget', array('legacy' => 'Legacy'));
+          $this->widget('application.components.CurrencyInformerLegacyWidget');
           Yii::endProfile('CurrencyInformerWidget');
 
           //Блок погоды         
           Yii::beginProfile('WeatherInformerWidget');
-          $this->widget('application.components.WeatherInformerWidget', array('legacy' => 'Legacy'));
+          $this->widget('application.components.WeatherInformerLegacyWidget');
           Yii::endProfile('WeatherInformerWidget');
 
           //Блок авторизации                   

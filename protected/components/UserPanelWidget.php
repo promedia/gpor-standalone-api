@@ -9,7 +9,7 @@ class UserPanelWidget extends CWidget {
   public $legacy = '';
 
   public function run() {
-
+//echo '<pre>'.print_r($this->authUser,2).'</pre>';
     // authorization backend host
     $authHost = Yii::app()->params['authData']['authHost'];
     $returnUrl = Yii::app()->getRequest()->getQuery('returnUrl');

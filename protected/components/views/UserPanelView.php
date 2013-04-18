@@ -28,9 +28,6 @@
 
 <script type="text/javascript" charset="UTF-8" src="<?php echo $authHost; ?>/auth/checkIsAuth/?providers_set=properm,vk,lj,fb,tw,ya&amp;redirectUrl=<?php echo $redirectUrl; ?>&amp;returnUrl=<?php echo $returnUrl; ?>"></script>
 
-<?php
-if ($data != 'session_token_error') {
-  ?>
   <!-- обработчик случая, если пользователь аутентифицирован на бекэнде. Должно стоять после загрузки скрипта, т.к. в нем определяется GporAuth -->
   <script type="text/javascript">
     GporAuth.run (function(token) {
@@ -38,7 +35,3 @@ if ($data != 'session_token_error') {
       return;
     });
   </script>
-  
-  <?php
-}
-?>

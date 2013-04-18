@@ -7,7 +7,16 @@
  */
 class WeatherInformerWidget extends CWidget {
 
-  public $legacy = '';
+  /**
+   * Name of view to render
+   * @var string  
+   */
+  protected $viewName;
+
+  public function __construct() {
+
+    $this->viewName = 'WeatherInformerView';
+  }
 
   public function run() {
 
@@ -19,20 +28,20 @@ class WeatherInformerWidget extends CWidget {
     // if isset cache return it
     if ($widgetCache) {
 
-      $this->render('WeatherInformerView' . $this->legacy, array('data' => $widgetCache));
+      $this->render($this->viewName, array('data' => $widgetCache));
     } else {
 
       $cacheTime = !empty(Yii::app()->params['cachingPeriod']['weatherInformer']) ? Yii::app()->params['cachingPeriod']['weatherInformer'] : 60 * 60;
 
       // get weather data array from 66 api
       $arrWeatherData = XMLRPCHelper::sendMessage('weather.getWeather');
-      
+
       if (is_array($arrWeatherData) && isset($arrWeatherData['current'])) {
-        
+
         // save cahce
         Yii::app()->cache->set($cacheKey, $arrWeatherData, $cacheTime);
 
-        $this->render('WeatherInformerView' . $this->legacy, array('data' => $arrWeatherData));
+        $this->render($this->viewName, array('data' => $arrWeatherData));
       }
     }
   }

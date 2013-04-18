@@ -64,13 +64,13 @@ class GporApiController extends CController {
     Yii::beginProfile('actionGetHeader');
 
     Yii::beginProfile('AuthHelper::isAuth');
-	
+
     // check user authorization
     $authUser = AuthHelper::isAuth();
-   
+
     Yii::endProfile('AuthHelper::isAuth');
     // cache hash
-    $cacheKey = md5($this->httpRequest->getRequestUri(). $authUser['response']);
+    $cacheKey = md5($this->httpRequest->getRequestUri() . $authUser['response']);
 
     $cachedHeader = Yii::app()->cache->get($cacheKey . '_header');
 
@@ -79,7 +79,7 @@ class GporApiController extends CController {
       echo $cachedHeader;
     } else {
 
-			Yii::beginProfile('getData');
+      Yii::beginProfile('getData');
       // setting the url of section (page)
       if (!($url = $this->httpRequest->getQuery('url'))) {
         throw new CHttpException(500, '500 Error');
@@ -230,34 +230,52 @@ class GporApiController extends CController {
         $render = iconv(Yii::app()->charset, $charset, $render);
       }
 
-			Yii::endProfile('getData');
+      Yii::endProfile('getData');
 
-      Yii::beginProfile('render');     
-			
-			echo $render;
+      Yii::beginProfile('render');
+
+      echo $render;
       Yii::endProfile('render');
-			Yii::app()->cache->set($cacheKey . '_header', $render, Yii::app()->params['cachingPeriod']['header']);
+      Yii::app()->cache->set($cacheKey . '_header', $render, Yii::app()->params['cachingPeriod']['header']);
     }
-		Yii::endProfile('actionGetHeader');
+    Yii::endProfile('actionGetHeader');
   }
 
-  /** Function of header forming
+  /**
    * 
    */
   public function actionCheckAuth() {
+
     Yii::beginProfile('actionCheckAuth');
 
     $authToken = $this->httpRequest->getQuery('auth_token');
 
     if (!empty($authToken)) {
 
-      $authUser = AuthHelper::checkAuthToken($authToken);
+      $sessionToken = AuthHelper::checkAuthToken($authToken);
 
-      if ($authUser) {
-        echo $authUser;
-      }
+      echo $sessionToken;
     }
+
     Yii::endProfile('actionCheckAuth');
+  }
+
+  /**
+   * Action for checking session token before header load
+   */
+  public function actionCheckSessionToken() {
+
+    Yii::beginProfile('actionCheckSessionToken');
+
+    $sessionToken = $this->httpRequest->getQuery('session_token');
+
+    if (!empty($sessionToken)) {
+
+      $authUser = AuthHelper::checkSessionToken($sessionToken);
+
+      echo $authUser;
+    }
+    Yii::endProfile('actionCheckSessionToken');
   }
 
 }

@@ -7,7 +7,16 @@
  */
 class CurrencyInformerWidget extends CWidget {
 
-  public $legacy = '';
+  /**
+   * Name of view to render
+   * @var string  
+   */
+  protected $viewName;
+
+  public function __construct() {
+
+    $this->viewName = 'CurrencyInformerView';
+  }
 
   public function run() {
 
@@ -19,7 +28,7 @@ class CurrencyInformerWidget extends CWidget {
     if ($widgetCache) {
       $cacheTime = !empty(Yii::app()->params['cachingPeriod']['currencyInformer']) ? Yii::app()->params['cachingPeriod']['currencyInformer'] : 60 * 60;
 
-      $this->render('CurrencyInformerView' . $this->legacy, array('data' => $widgetCache));
+      $this->render($this->viewName, array('data' => $widgetCache));
     } else {
 
       // if have date for rate
@@ -32,22 +41,22 @@ class CurrencyInformerWidget extends CWidget {
         // parse json data and prepare result array
         $arrJsonData = json_decode($source, true);
         if (is_array($arrJsonData) && count($arrJsonData) > 0) {
-          
+
           // loop through date to find today and the-day-before rate
           foreach ($arrJsonData as $date => $rateByDate) {
-            
+
             $arrRate = array();
-            
+
             // loop through rates for date to find USD and EURO rates
             foreach ($rateByDate as $currencyRate) {
-              
+
               if ($currencyRate['charCode'] == 'USD') {
                 $arrRate['USD'] = $currencyRate;
               } elseif ($currencyRate['charCode'] == 'EUR') {
                 $arrRate['EUR'] = $currencyRate;
               }
             }
-            
+
             // save in yeasterday array or today and stop search
             if ($date == date('Y-m-d')) {
               $arrCurrencyData['todayRate'] = $arrRate;
@@ -57,8 +66,8 @@ class CurrencyInformerWidget extends CWidget {
             }
           }
         }
-       
-        $this->render('CurrencyInformerView' . $this->legacy, array('data' => $arrCurrencyData));
+
+        $this->render($this->viewName, array('data' => $arrCurrencyData));
       }
     }
   }
