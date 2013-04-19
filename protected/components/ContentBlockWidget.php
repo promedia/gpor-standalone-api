@@ -18,6 +18,7 @@ class ContentBlockWidget extends CWidget {
 
     // if isset cache return it
     if ($cachedCB) {
+      
       $this->render('ContentBlockView', array('CB' => $cachedCB));
     } else {
 

@@ -246,7 +246,7 @@
             <noindex>
               <?php
                 // Блок меню
-                $this->widget('application.components.MenuWidget', array('authUser' => $authUser)); 
+                $this->widget('application.components.MenuWidget', array('authUser' => $authUser, 'pageUrl' => $url)); 
                 
                 //Блок авторизации                   
                 $this->widget('application.components.UserPanelWidget', array('authUser' => $authUser));

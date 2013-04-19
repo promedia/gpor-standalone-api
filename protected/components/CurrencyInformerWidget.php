@@ -22,12 +22,12 @@ class CurrencyInformerWidget extends CWidget {
 
     // get cache
     $cacheKey = md5(serialize(array('type' => 'currency_informer')));
+    
     $widgetCache = Yii::app()->cache->get($cacheKey);
 
     // if isset cache return it
     if ($widgetCache) {
-      $cacheTime = !empty(Yii::app()->params['cachingPeriod']['currencyInformer']) ? Yii::app()->params['cachingPeriod']['currencyInformer'] : 60 * 60;
-
+      
       $this->render($this->viewName, array('data' => $widgetCache));
     } else {
 
@@ -66,6 +66,10 @@ class CurrencyInformerWidget extends CWidget {
             }
           }
         }
+
+        // save cahce
+        $cacheTime = !empty(Yii::app()->params['cachingPeriod']['currencyInformer']) ? Yii::app()->params['cachingPeriod']['currencyInformer'] : 60 * 60;
+        Yii::app()->cache->set($cacheKey, $arrCurrencyData, $cacheTime);
 
         $this->render($this->viewName, array('data' => $arrCurrencyData));
       }

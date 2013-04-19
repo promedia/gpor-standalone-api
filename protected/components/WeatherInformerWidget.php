@@ -31,17 +31,21 @@ class WeatherInformerWidget extends CWidget {
       $this->render($this->viewName, array('data' => $widgetCache));
     } else {
 
-      $cacheTime = !empty(Yii::app()->params['cachingPeriod']['weatherInformer']) ? Yii::app()->params['cachingPeriod']['weatherInformer'] : 60 * 60;
+      try {
 
-      // get weather data array from 66 api
-      $arrWeatherData = XMLRPCHelper::sendMessage('weather.getWeather');
+        // get weather data array from 66 api
+        $arrWeatherData = XMLRPCHelper::sendMessage('weather.getWeather');
 
-      if (is_array($arrWeatherData) && isset($arrWeatherData['current'])) {
+        if (is_array($arrWeatherData) && isset($arrWeatherData['current'])) {
 
-        // save cahce
-        Yii::app()->cache->set($cacheKey, $arrWeatherData, $cacheTime);
+          // save cahce
+          $cacheTime = !empty(Yii::app()->params['cachingPeriod']['weatherInformer']) ? Yii::app()->params['cachingPeriod']['weatherInformer'] : 60 * 60;
+          Yii::app()->cache->set($cacheKey, $arrWeatherData, $cacheTime);
 
-        $this->render($this->viewName, array('data' => $arrWeatherData));
+          $this->render($this->viewName, array('data' => $arrWeatherData));
+        }
+      } catch (Exception $e) {
+        Yii::log('WeatherInformerWidget ' . $e->getMessage(), 'error');
       }
     }
   }

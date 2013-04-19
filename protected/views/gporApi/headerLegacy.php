@@ -233,7 +233,7 @@
             <?php
             // Блок меню
             Yii::beginProfile('MenuWidget');
-            $this->widget('application.components.MenuWidget', array('legacy' => 'Legacy', 'authUser' => $authUser));
+            $this->widget('application.components.MenuWidget', array('legacy' => 'Legacy', 'authUser' => $authUser, 'pageUrl' => $url));
             Yii::endProfile('MenuWidget');
             ?>
           </noindex>    
