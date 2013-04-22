@@ -109,8 +109,6 @@ class HeaderModel extends CModel {
    */
   protected function setCharset($charset = 'utf-8') {
 
-    $charset = strip_tags($charset);
-
     $this->charset = ($charset == 'windows-1251') ? $charset : 'utf-8';
   }
 
@@ -138,7 +136,7 @@ class HeaderModel extends CModel {
     if (!empty($title)) {
 
       // get title from request?
-      $this->title = strip_tags(urldecode($this->title));
+      $this->title = urldecode($this->title);
 
       if ($this->charset != Yii::app()->charset) {
         $this->title = iconv($this->charset, Yii::app()->charset, $this->title);
@@ -146,7 +144,7 @@ class HeaderModel extends CModel {
     } elseif ($arrCustomData) {
 
       // get title from api by page url?
-      $this->title = strip_tags($arrCustomData[0]['title']);
+      $this->title = $arrCustomData[0]['title'];
     }
 
 
@@ -154,7 +152,7 @@ class HeaderModel extends CModel {
     if (!empty($keywords)) {
 
       // get keywords from request?
-      $this->keywords = strip_tags(urldecode($keywords));
+      $this->keywords =urldecode($keywords);
 
       if ($this->charset != Yii::app()->charset) {
         $this->keywords = iconv($this->charset, Yii::app()->charset, $this->keywords);
@@ -162,21 +160,21 @@ class HeaderModel extends CModel {
     } elseif ($arrCustomData) {
 
       // get keywords from api by page url?
-      $seoKeywords = strip_tags($arrCustomData[0]['keywords']);
+      $seoKeywords = $arrCustomData[0]['keywords'];
     }
 
     // setting the description (SEO) of section (page)
     if (!empty($description)) {
 
       // get description from request?
-      $this->description = strip_tags(urldecode($description));
+      $this->description = urldecode($description);
 
       if ($this->charset != Yii::app()->charset) {
         $this->description = iconv($charset, Yii::app()->charset, $this->description);
       }
     } elseif ($arrCustomData) {
       // get description from api by page url?
-      $this->description = strip_tags($arrCustomData[0]['description']);
+      $this->description = $arrCustomData[0]['description'];
     }
   }
 
@@ -188,7 +186,7 @@ class HeaderModel extends CModel {
   protected function setPageUrl($pageUrl = '') {
 
     // clear page url     
-    $pageUrl = strip_tags(urldecode($pageUrl));
+    $pageUrl = urldecode($pageUrl);
 
     // deleting WWW from Url and adding slashes in the beggining and in the end of Url
     $pageUrl = preg_replace('/www./', '', $pageUrl);
@@ -277,8 +275,6 @@ class HeaderModel extends CModel {
    */
   protected function setCss($css = '') {
 
-    $css = strip_tags($css);
-
     if (!empty($css)) {
       $this->css = explode(',', $css);
     }
@@ -290,8 +286,6 @@ class HeaderModel extends CModel {
    * @param string $js 
    */
   protected function setJs($js = '') {
-
-    $js = strip_tags($js);
 
     if (!empty($js)) {
       $this->css = explode(',', $js);
@@ -313,7 +307,7 @@ class HeaderModel extends CModel {
    * 
    * @param boolean $search 0 by default (no search block)
    */
-  protected function setHeaderCB($headerCB = 'common_banner_top') {
+  protected function setHeaderCB($headerCB = '') {
 
     if (!empty($headerCB)) {
       $this->headerCB = $headerCB;
@@ -338,7 +332,7 @@ class HeaderModel extends CModel {
   protected function setCaption($caption = '') {
 
     if (!empty($caption)) {
-      $this->caption = strip_tags(urldecode($caption));
+      $this->caption = urldecode($caption);
 
       if ($this->charset != Yii::app()->charset)
         $this->caption = iconv($this->charset, Yii::app()->charset, $caption);

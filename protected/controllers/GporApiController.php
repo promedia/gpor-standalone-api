@@ -20,10 +20,12 @@ class GporApiController extends CController {
     throw new CHttpException(404, '404 Error');
   }
 
+  /**
+   * log error
+   */
   public function actionError() {
-    $error = Yii::app()->errorHandler->error;
 
-    $this->render('error', array('error' => $error));
+    Yii::log(Yii::app()->errorHandler->error['trace'], 'error');
   }
 
   /**
@@ -143,39 +145,34 @@ class GporApiController extends CController {
   }
 
   /**
-   * 
+   * Check auth token from client on auth host
+   * If the request does not include a auth_token parameter, a CHttpException (error code 400) will be thrown automatically.
+   * @param string $auth_token request param $_GET['auth_token']
    */
-  public function actionCheckAuth() {
+  public function actionCheckAuth($auth_token) {
 
     Yii::beginProfile('actionCheckAuth');
 
-    $authToken = $this->httpRequest->getQuery('auth_token');
+    $sessionToken = AuthHelper::checkAuthToken($auth_token);
 
-    if (!empty($authToken)) {
-
-      $sessionToken = AuthHelper::checkAuthToken($authToken);
-
-      echo $sessionToken;
-    }
+    echo $sessionToken;
 
     Yii::endProfile('actionCheckAuth');
   }
 
   /**
-   * Action for checking session token before header load
+   * Check session token from client on auth host
+   * If the request does not include a session_token parameter, a CHttpException (error code 400) will be thrown automatically.
+   * @param string $session_token request param $_GET['session_token']
    */
-  public function actionCheckSessionToken() {
+  public function actionCheckSessionToken($session_token) {
 
     Yii::beginProfile('actionCheckSessionToken');
 
-    $sessionToken = $this->httpRequest->getQuery('session_token');
+    $authUser = AuthHelper::checkSessionToken($session_token);
 
-    if (!empty($sessionToken)) {
+    echo $authUser;
 
-      $authUser = AuthHelper::checkSessionToken($sessionToken);
-
-      echo $authUser;
-    }
     Yii::endProfile('actionCheckSessionToken');
   }
 
