@@ -134,7 +134,8 @@ class GporApiController extends CController {
             ), true);
 
     if ($objHeader->charset != Yii::app()->charset) {
-      $render = iconv(Yii::app()->charset, $objHeader->charset, $render);
+      // 24-04-2013 Korepanova add //IGNORE  to avoiid FALSE result og iconv
+      $render = iconv(Yii::app()->charset, $objHeader->charset . "//IGNORE", $render);
     }
 
     Yii::endProfile('renderData');

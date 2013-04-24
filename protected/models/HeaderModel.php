@@ -124,9 +124,9 @@ class HeaderModel extends CModel {
    */
   protected function setMetaTags($pageUrl = '', $title = '', $description = '', $keywords = '') {
 
-    $this->setPageUrl($pageUrl);
+    if (!empty($pageUrl)) {
 
-    if (!empty($this->pageUrl)) {
+      $this->setPageUrl($pageUrl);
 
       // getting list of api custom data (url, metatags, etc.)
       $arrCustomData = $this->getCustomUrlTitles();
@@ -139,7 +139,9 @@ class HeaderModel extends CModel {
       $this->title = urldecode($this->title);
 
       if ($this->charset != Yii::app()->charset) {
-        $this->title = iconv($this->charset, Yii::app()->charset, $this->title);
+
+        // 24-04-2013 Korepanova add //IGNORE  to avoiid FALSE result og iconv
+        $this->title = iconv($this->charset, Yii::app()->charset . "//IGNORE", $this->title);
       }
     } elseif ($arrCustomData) {
 
@@ -152,10 +154,12 @@ class HeaderModel extends CModel {
     if (!empty($keywords)) {
 
       // get keywords from request?
-      $this->keywords =urldecode($keywords);
+      $this->keywords = urldecode($keywords);
 
       if ($this->charset != Yii::app()->charset) {
-        $this->keywords = iconv($this->charset, Yii::app()->charset, $this->keywords);
+
+        // 24-04-2013 Korepanova add //IGNORE  to avoiid FALSE result og iconv
+        $this->keywords = iconv($this->charset, Yii::app()->charset . "//IGNORE", $this->keywords);
       }
     } elseif ($arrCustomData) {
 
@@ -170,7 +174,9 @@ class HeaderModel extends CModel {
       $this->description = urldecode($description);
 
       if ($this->charset != Yii::app()->charset) {
-        $this->description = iconv($charset, Yii::app()->charset, $this->description);
+
+        // 24-04-2013 Korepanova add //IGNORE  to avoiid FALSE result og iconv
+        $this->description = iconv($charset, Yii::app()->charset . "//IGNORE", $this->description);
       }
     } elseif ($arrCustomData) {
       // get description from api by page url?
@@ -185,22 +191,22 @@ class HeaderModel extends CModel {
    */
   protected function setPageUrl($pageUrl = '') {
 
-    // clear page url     
-    $pageUrl = urldecode($pageUrl);
-
-    // deleting WWW from Url and adding slashes in the beggining and in the end of Url
-    $pageUrl = preg_replace('/www./', '', $pageUrl);
-    if (substr($pageUrl, -1) != '/') {
-      $pageUrl = $pageUrl . '/';
-    }
-
-    if (substr($pageUrl, 0, 1) != '/') {
-      $pageUrl = '/' . $pageUrl;
-    }
-
     if (empty($pageUrl)) {
       Yii::log('HeaderModel::setPageUrl BAD page url from request ' . $pageUrl, 'error');
     } else {
+      // clear page url     
+      $pageUrl = urldecode($pageUrl);
+
+      // deleting WWW from Url and adding slashes in the beggining and in the end of Url
+      $pageUrl = preg_replace('/www./', '', $pageUrl);
+      if (substr($pageUrl, -1) != '/') {
+        $pageUrl = $pageUrl . '/';
+      }
+
+      if (substr($pageUrl, 0, 1) != '/') {
+        $pageUrl = '/' . $pageUrl;
+      }
+
       $this->pageUrl = $pageUrl;
     }
   }
@@ -335,7 +341,8 @@ class HeaderModel extends CModel {
       $this->caption = urldecode($caption);
 
       if ($this->charset != Yii::app()->charset)
-        $this->caption = iconv($this->charset, Yii::app()->charset, $caption);
+      // 24-04-2013 Korepanova add //IGNORE  to avoiid FALSE result og iconv
+        $this->caption = iconv($this->charset, Yii::app()->charset . "//IGNORE", $caption);
     }
   }
 

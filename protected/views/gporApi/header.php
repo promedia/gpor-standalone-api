@@ -1,23 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 
   <head>
-
-    <? //на другом конце url - оказался скрипт содержащий методы для проверки авторизован ли юзер и прочей ерунды. Нужно разобраться что к чему ?>
-    <!--<script type="text/javascript">
-      var url = "http://auth.properm.ru/auth/checkIsAuth/?providers_set=properm,vk,fb,tw,lj&redirectUrl=http%3A%2F%2Fproperm.ru%2Fnewgporlogin%2F&returnUrl=http%3A%2F%2Fproperm.ru%2Fnews%2F&rand=236466";
-      url = url.replace("http%3A%2F%2Fproperm.ru%2Fnews%2F",encodeURIComponent(window.location));
-      document.write('<scri' + 'pt type="text/javascript" src="' + url + '"></scri' + 'pt>');
-    </script>
-    <script type="text/javascript">
-      GporAuth.run (function(token) {
-        window.location.href = 'http://properm.ru/newgporlogin/?auth_token='+token+'&returnUrl='+window.location;
-      });
-    </script>-->
-
-
-
     <meta content="text/html; charset=<?= $charset ?>" http-equiv="Content-Type" />
 
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/favicon.ico" type="image/x-icon" rel="icon" />
@@ -78,29 +62,33 @@
     <title><?= $this->pageTitle ?></title>
 
     <script src="<?= Yii::app()->request->getBaseUrl(true) ?>/js/client.js"  type="text/javascript"></script>
-    <?php //стили и скрипт для поиска ?>
-    <?php if (!empty($search)) { ?>
+    <?php
+    //стили и скрипт для поиска 
+    if (!empty($search)) {
+      ?>
       <script type="text/javascript">
         (function($) {
           $(function() {
             var $searchText = $('#v5-search-text');
 
             $searchText.blur(function() {
-              if(!'кремлевская диета' || this.value.replace(/(^\s+|\s+$)/g, '')) return;
+              if (!'кремлевская диета' || this.value.replace(/(^\s+|\s+$)/g, ''))
+                return;
               $searchText.val('Например: кремлевская диета').addClass('blured');
             })
-            .focus(function() {
-              if(this.value.replace(/(^\s+|\s+$)/g, '') != 'Например: кремлевская диета') return;
+                    .focus(function() {
+              if (this.value.replace(/(^\s+|\s+$)/g, '') != 'Например: кремлевская диета')
+                return;
               $searchText.val('').removeClass('blured');
             })
-            .parents('form').submit(function() {
-              if($.trim($searchText.val()) != 'Например: кремлевская диета')
+                    .parents('form').submit(function() {
+              if ($.trim($searchText.val()) != 'Например: кремлевская диета')
                 return;
 
               $searchText.val('кремлевская диета').removeClass('blured');
             }).attr('autocomplete', 'off');
 
-            if(!$searchText.val() && 'кремлевская диета')
+            if (!$searchText.val() && 'кремлевская диета')
               $searchText.addClass('blured').val('Например: кремлевская диета');
 
             $.browser.msie && $.browser.version <= 6 ? LoadPng() : '';
@@ -112,7 +100,7 @@
 
 
 
-    <?php //Хрен знает что такое ?>
+    <?php //Хрен знает что такое  ?>
     <!--<script language="JavaScript" type="text/javascript">
       if (self.parent.frames.length != 0)
         self.parent.location="http://properm.ru"
@@ -121,7 +109,7 @@
     <script type="text/javascript">
       /* <![CDATA[ */
       $(document)
-    <?php //Путь до кэша js, css & img в первом параметре был ?>
+    <?php //Путь до кэша js, css & img в первом параметре был  ?>
   .data('portal.resources', '<?= Yii::app()->request->getBaseUrl(true) ?>')
   .data('portal.user.id', '')
   .data('portal.user.uid', '')
@@ -138,10 +126,6 @@
   /* ]]> */
     </script>-->
 
-    <? //А этой картинки вообще нет на серваке. Убираю - ничего не изменяется. Когда создадим всю шапку-подвал, нужно проверить за что отвечают эти скрипты ?>
-    <!--<style text="text/css">
-      .head_menu-weather-status { background: url('http://properm.ru/st//2cb6206a5c755f558052c7818b60374ea6018df1/img/weather-icons.png') 0 0 no-repeat; }
-    </style>-->
     <!--[if lte IE 6]>
         <style type="text/css">
             .head_menu-top .head_menu-top-left .head_menu-top-logo a { background: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png',sizingMethod='scale'); }
@@ -190,7 +174,7 @@
           $this->widget('application.components.ContentBlockWidget', array('name' => $headerCB));
           ?>
         </div>
-        
+
         <div id="head-wrap" class="ie_layout" >
           <!--[if lt IE 7]>
             <div class="ie_max-width_left_frame"></div>
@@ -205,7 +189,7 @@
                 </div>
 
                 <?php if (!empty($search)) { ?>
-                  <?php //блок поиска  ?>
+                  <?php //блок поиска   ?>
                   <form action="http://properm.ru/search/" accept-charset="UTF-8" method="get" class="search_form_header" autocomplete="off">
                     <p><label for="v5-search-text">Поиск</label></p>
                     <p>
@@ -215,7 +199,7 @@
 
                   </form>
                 <?php } elseif (!empty($caption)) { ?>
-                  <?php //Название раздела  ?>
+                  <?php //Название раздела   ?>
                   <div class="head_menu-top-section" style="left: 229px">
                     &nbsp;&mdash;&nbsp;<a style="top: 0;" href="http://<?= $url ?>"><?= $caption ?></a>
                   </div>
@@ -230,13 +214,11 @@
                     </style>
                   <![endif]-->
                   <?php
-                  //Блок погоды                   
+                  // Виджет погоды
                   $this->widget('application.components.WeatherInformerWidget');
 
-                  //Блок валюты                   
+                  // Виджет курсов валюты
                   $this->widget('application.components.CurrencyInformerWidget');
-                  
-                  
                   ?>
 
                 </noindex>
@@ -245,11 +227,11 @@
 
             <noindex>
               <?php
-                // Блок меню
-                $this->widget('application.components.MenuWidget', array('authUser' => $authUser, 'pageUrl' => $url)); 
-                
-                //Блок авторизации                   
-                $this->widget('application.components.UserPanelWidget', array('authUser' => $authUser));
+              // Виджет меню
+              $this->widget('application.components.MenuWidget', array('authUser' => $authUser, 'pageUrl' => $url));
+
+              // Виджет авторизации                   
+              $this->widget('application.components.UserPanelWidget', array('authUser' => $authUser));
               ?>
             </noindex>
 
