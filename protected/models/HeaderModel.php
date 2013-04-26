@@ -100,6 +100,7 @@ class HeaderModel extends CModel {
     $this->setSearch($httpRequest->getQuery('search'));
     $this->setHeaderCB($httpRequest->getQuery('header_cb'));
     $this->setCaption($httpRequest->getQuery('caption'));
+
   }
 
   /**
@@ -136,7 +137,8 @@ class HeaderModel extends CModel {
     if (!empty($title)) {
 
       // get title from request?
-      $this->title = urldecode($this->title);
+      $this->title = urldecode($title);
+
 
       if ($this->charset != Yii::app()->charset) {
 
@@ -148,7 +150,6 @@ class HeaderModel extends CModel {
       // get title from api by page url?
       $this->title = $arrCustomData[0]['title'];
     }
-
 
     // setting the keywords (SEO) of section (page)
     if (!empty($keywords)) {
@@ -294,7 +295,7 @@ class HeaderModel extends CModel {
   protected function setJs($js = '') {
 
     if (!empty($js)) {
-      $this->css = explode(',', $js);
+      $this->js = explode(',', $js);
     }
   }
 

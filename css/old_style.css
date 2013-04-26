@@ -189,38 +189,6 @@ div.it-is-for-you {
 }
 
 /**
- * @workaround ie inline-block support
- * @affected ie6, ie7
- * @css-for ie6, ie7
- * @valid no
-*/
-* html #v5-head div.v5-logo a,
-* html #v5-head div.v5-logo a img,
-* html #v5-head div.v5-logo a span {
-  display: inline;
-  zoom: 1;
-}
-
-#v5-head div.v5-logo a {
-  margin-top:11px;
-  text-decoration: none !important;
-  color: #FFFFFF;
-}
-
-#v5-head div.v5-logo a img {
-  margin-left: 7px;
-  border: 0;
-  font-size: 40px;
-}
-
-#v5-head div.v5-logo a span {
-  width: 130px;
-  margin-top: 1px;
-  margin-left: 10px;
-  line-height: 13px;
-}
-
-/**
  * @subsection global header
 */
 #v5-head div.global-header {

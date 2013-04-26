@@ -83,7 +83,7 @@ class GporApiController extends CController {
     // set page title
     $this->pageTitle = $objHeader->title;
 
-    // set keywords
+	// set keywords
     if (!empty($objHeader->keywords)) {
       $clientScript->registerMetaTag($objHeader->keywords, 'keywords');
     }
@@ -132,7 +132,6 @@ class GporApiController extends CController {
         'url' => $this->httpRequest->getQuery('url'),
         'authUser' => $authUser,
             ), true);
-
     if ($objHeader->charset != Yii::app()->charset) {
       // 24-04-2013 Korepanova add //IGNORE  to avoiid FALSE result og iconv
       $render = iconv(Yii::app()->charset, $objHeader->charset . "//IGNORE", $render);
