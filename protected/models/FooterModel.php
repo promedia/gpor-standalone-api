@@ -7,6 +7,12 @@
 class FooterModel extends CModel {
 
     /**
+     * Footer charset 
+     * @var string
+     */
+    public $charset = 'utf-8';
+
+    /**
      * Flag for legacy footer
      * 1 for legacy, 0 for new
      * @var boolean 
@@ -25,7 +31,7 @@ class FooterModel extends CModel {
      * @return array of class attributes names
      */
     public function attributeNames() {
-        return array('legacy', 'footerCB');
+        return array('charset', 'legacy', 'footerCB');
     }
 
     /**
@@ -37,8 +43,19 @@ class FooterModel extends CModel {
         $httpRequest = Yii::app()->getRequest();
 
         // set footer params
+        $this->setCharset($httpRequest->getQuery('charset'));
         $this->setLegacy($httpRequest->getQuery('legacy'));
         $this->setFooterCB($httpRequest->getQuery('footer_cb'));
+    }
+
+    /**
+     * Set charset footer param
+     * 
+     * @param string $charset utf-8 by default
+     */
+    protected function setCharset($charset = 'utf-8') {
+
+        $this->charset = ($charset == 'windows-1251') ? $charset : 'utf-8';
     }
 
     /**
