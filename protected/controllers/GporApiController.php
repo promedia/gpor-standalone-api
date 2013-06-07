@@ -175,5 +175,36 @@ class GporApiController extends CController {
 
     Yii::endProfile('actionCheckSessionToken');
   }
+  
+  /** Function of footer forming
+   * 
+   */
+  public function actionGetFooter() {
+
+    Yii::beginProfile('actionGetFooter');
+
+    // init header object
+    Yii::beginProfile('initFooterObject');
+    $objFooter = new FooterModel();
+    Yii::endProfile('initFooterObject');
+
+    // set data
+    Yii::beginProfile('renderFooterData');
+
+    // set view depending on requested legacy
+    if ($objFooter->legacy) {
+      $viewName = 'footerLegacy';
+    } else {
+      $viewName = 'footer';
+    }
+
+    $render = $this->render($viewName, array( 'footerCB' => $objFooter->footerCB ), true);
+    
+    Yii::endProfile('renderFooterData');
+
+    echo $render;
+
+    Yii::endProfile('actionGetFooter');
+  }
 
 }
