@@ -205,7 +205,7 @@ class GporApiController extends CController {
         Yii::endProfile('renderFooterData');
 
         if ($objFooter->charset != Yii::app()->charset) {
-            $render = iconv($objFooter->charset, Yii::app()->charset . "//IGNORE" , $render);
+            $render = iconv(Yii::app()->charset, $objFooter->charset . "//IGNORE", $render);
         }
         
         echo $render;
