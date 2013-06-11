@@ -2,6 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 
   <head>
+   <?php
+    // authorization backend host
+    $authHost = Yii::app()->params['authData']['authHost'];
+    $returnUrl = Yii::app()->getRequest()->getQuery('returnUrl');
+    $redirectUrl = Yii::app()->getRequest()->getQuery('redirectUrl');
+
+    // we can't make authorization without this params
+    if ($authHost && $returnUrl && $redirectUrl) {
+      if (!$authUser['response']) {
+        ?>  
+        <script type="text/javascript" charset="UTF-8" src="<?php echo $authHost; ?>/auth/checkIsAuth/?providers_set=properm,vk,lj,fb,tw,ya&amp;redirectUrl=<?php echo $redirectUrl; ?>&amp;returnUrl=<?php echo $returnUrl; ?>"></script>
+
+        <!-- обработчик случая, если пользователь аутентифицирован на бекэнде. Должно стоять после загрузки скрипта, т.к. в нем определяется GporAuth -->
+        <script type="text/javascript">
+          GporAuth.run(function(token) {
+            window.location.href = 'http://' + window.location.hostname + '/?auth_token=' + token + '&returnUrl=' + window.location;
+            return;
+          });
+        </script>
+
+        <?php
+      }
+    }
+    ?> 
     <meta content="text/html; charset=<?= $charset ?>" http-equiv="Content-Type" />
 
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/favicon.ico" type="image/x-icon" rel="icon" />
