@@ -209,7 +209,7 @@
               <div class="decorationHeaderPic "></div>
               <div class="head_menu-top-left context">
                 <div class="head_menu-top-logo">
-                  <a href="properm.ru/" style="background: url('<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
+                  <a href="http://properm.ru/" style="background: url('<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png') 0 50% no-repeat; width: 219px; height: 60px;">&nbsp;</a>
                 </div>
 
                 <?php if (!empty($search)) { ?>
