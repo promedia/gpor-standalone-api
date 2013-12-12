@@ -28,3 +28,26 @@ a.head_submenu_item_link {
 .search_form_header label {
   font-size: 11px;  color: #EBFFBC;
 }
+
+#foot .content-block {
+    margin-left: 165px;
+}
+#foot ul.v5-menu, #foot ul.b-footer-links {
+    float: left;
+    margin: 0px;
+}
+#foot ul.b-footer-links li.footer-counters {
+    border-right: none;
+    position: absolute;
+    top: 10px;
+    right: -5px;
+    width: 182px;
+    height: 45px;
+}
+#foot ul.b-footer-links li.footer-counters iframe{
+    width: 182px;
+}
+#foot ul.b-footer-links li.footer-counters#social-buttons {
+    width: auto;
+    left: 437px;
+}
