@@ -22,6 +22,7 @@ class UserPanelWidget extends CWidget {
       } else {
         $view = 'UserPanelView' . $this->legacy;
       }
+	  Yii::log( 'render ' . $view . ' for UserPanelWidget', 'trace');
       $this->render($view, array('data' => $this->authUser['data'], 'authHost' => $authHost, 'returnUrl' => $returnUrl, 'redirectUrl' => $redirectUrl));
     }
   }

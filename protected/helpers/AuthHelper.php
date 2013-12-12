@@ -131,14 +131,14 @@ class AuthHelper {
 
       // no token in user's session
       if (!isset($sessionToken)) {
-        Yii::trace('AuthHelper::isAuth() no_backend_auth');
+        Yii::log('AuthHelper::isAuth() no_backend_auth', 'trace');
         return array('response' => 0, 'data' => 'no_backend_auth');
       }
 
       $arrParams = self::getAuthConnectionParams();
 
       if (isset($arrParams['error'])) {
-        Yii::trace('AuthHelper::isAuth(' . $sessionToken . ') Bad connection data from Yii::app()->params["authData"]');
+        Yii::log('AuthHelper::isAuth(' . $sessionToken . ') Bad connection data from Yii::app()->params["authData"]', 'error');
         return array('response' => 0, 'data' => 'no_auth_data');
       }
 
@@ -148,11 +148,11 @@ class AuthHelper {
 
       if ($res && $res->success) {
 
-        Yii::trace('AuthHelper::isAuth(' . $sessionToken . ') Good session token. User name ' . $res->userData->username);
+        Yii::log('AuthHelper::isAuth(' . $sessionToken . ') Good session token. User name ' . $res->userData->username, 'trace');
         return array('response' => $res->userData->id, 'data' => array('user' => $res->userData, 'token' => $sessionToken));
       } elseif ($res && $res->error) {
 
-        Yii::trace('AuthHelper::isAuth(' . $sessionToken . ') Wrong session token');
+        Yii::log('AuthHelper::isAuth(' . $sessionToken . ') Wrong session token', 'error');
         return array('response' => 0, 'data' => 'session_token_error');
       }
     } catch (CurlException $ce) {

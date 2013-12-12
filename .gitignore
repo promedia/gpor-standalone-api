@@ -1,6 +1,3 @@
-assets/
-protected/runtime/
-themes/classic/views/
-appConfig/
-appConfig/params.php
 index.php
+appConfig/params.php
+protected/runtime/

@@ -187,6 +187,9 @@ div.it-is-for-you {
 	color: #FFFFFF;
 }
 
+.v5-logo__pic {background: url('') 0 50% no-repeat; height: 60px;}
+.v5-logo__descr {line-height: 13px; width: 120px; display: inline-block;}
+.v5-logo__descr span {display: inline-block; vertical-align: middle; margin-top: 8px;}
 #v5-head div.v5-logo a,
 #v5-head div.v5-logo a img,
 #v5-head div.v5-logo a span {
@@ -209,7 +212,7 @@ div.it-is-for-you {
 }
 
 #v5-head div.v5-logo a {
-	margin-top: 7px;
+	//margin-top: 7px;
 	text-decoration: none !important;
 	color: #FFFFFF;
 }
@@ -231,11 +234,11 @@ div.it-is-for-you {
  * @subsection global header
  */
 #v5-head div.global-header {
-	color:#FFFFFF;
-	font:italic bold 25px 'Arial';
-	left:220px;
-	position:absolute;
-	top:13px;
+	position: absolute;
+	top: 20px;
+	left: 107px;
+	font: bold italic 25px 'Arial';
+	color: #FFFFFF;
 }
 
 #v5-head div.global-header a {
@@ -246,7 +249,8 @@ div.it-is-for-you {
 /**
  * @subsection search
  */
-#v5-head form.v5-search {
+#v5-head form.v5-search,
+.v5-nosearch {
 	position: relative;
 	height: 57px;
 	margin: 0 19% 0 260px;
@@ -982,7 +986,7 @@ div.v5-login-content a img {
 #v5-foot div.v5-logo {
 	position: relative;
 	padding-top: 8px;
-	padding-left: 172px;
+	padding-left: 60px;
 }
 
 #v5-foot div.v5-logo a {

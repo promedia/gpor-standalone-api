@@ -1,6 +1,30 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html lang="ru">
   <head>
+   <?php
+    // authorization backend host
+    $authHost = Yii::app()->params['authData']['authHost'];
+    $returnUrl = Yii::app()->getRequest()->getQuery('returnUrl');
+    $redirectUrl = Yii::app()->getRequest()->getQuery('redirectUrl');
+
+    // we can't make authorization without this params
+    if ($authHost && $returnUrl && $redirectUrl) {
+      if (!$authUser['response']) {
+        ?>  
+        <script type="text/javascript" charset="UTF-8" src="<?php echo $authHost; ?>/auth/checkIsAuth/?providers_set=properm,vk,lj,fb,tw,ya&amp;redirectUrl=<?php echo $redirectUrl; ?>&amp;returnUrl=<?php echo $returnUrl; ?>"></script>
+
+        <!-- обработчик случая, если пользователь аутентифицирован на бекэнде. Должно стоять после загрузки скрипта, т.к. в нем определяется GporAuth -->
+        <script type="text/javascript">
+          GporAuth.run(function(token) {
+            window.location.href = 'http://' + window.location.hostname + '/?auth_token=' + token + '&returnUrl=' + window.location;
+            return;
+          });
+        </script>
+
+        <?php
+      }
+    }
+    ?> 
     <meta http-equiv="Content-Type" content="text/html; charset=<?= $charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
@@ -10,87 +34,99 @@
 
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_main_v3.css" rel=stylesheet type="text/css">
-    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style__new.css" rel=stylesheet type="text/css">
     <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/old_style.css" rel=stylesheet type="text/css">
-
+    <link href="<?= Yii::app()->request->getBaseUrl(true) ?>/css/style__new.css" rel=stylesheet type="text/css">
 
     <!--[if lte IE 6]>
     <style type="text/css" media="all">
     /**
-     * @package 66-v5-css
-     */
-  
+    * @package 66-v5-css
+    */
+
     /**
-     * @section head
-     */
-  
+    * @section head
+    */
+
     /**
-     * @subsection weather
-     */
-  
+    * @subsection weather
+    */
+
     /**
-     * @workaround ie6 transparent png support
-     * @affected ie6
-     * @css-for ie6
-     * @valid no
-     */
+    * @workaround ie6 transparent png support
+    * @affected ie6
+    * @css-for ie6
+    * @valid no
+    */
     #v5-head div.v5-weather-p {
-        background: none;
+      background: none;
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://t.properm.ru/common/img/v5-white-frame.png', sizingMethod='crop');
     }
-  
+
     /**
-     * @workaround ie6 rendering bug
-     * @affected ie6
-     * @css-for ie6
-     * @valid yes
-     */
+    * @workaround ie6 rendering bug
+    * @affected ie6
+    * @css-for ie6
+    * @valid yes
+    */
     #v5-head div.v5-weather-br {
-        left: -5px !important;
+      left: -5px !important;
     }
-  
+
     /**
-     * @subsection login
-     */
-  
+    * @subsection login
+    */
+
     /**
-     * @workaround ie6 transparent png support
-     * @affected ie6
-     * @css-for ie6
-     * @valid no
-     */
+    * @workaround ie6 transparent png support
+    * @affected ie6
+    * @css-for ie6
+    * @valid no
+    */
     #v5-head div.v5-login-p {
-        background: none;
+      background: none;
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://t.properm.ru/common/img/v5-lightgreen-frame.png', sizingMethod='crop');
     }
-  
+
     /**
-     * @workaround ie6 rendering bug
-     * @affected ie6
-     * @css-for ie6
-     * @valid yes
-     */
+    * @workaround ie6 rendering bug
+    * @affected ie6
+    * @css-for ie6
+    * @valid yes
+    */
     #v5-head div.v5-login-br {
-        left: -5px !important;
+      left: -5px !important;
     }
-  
+
     /**
-     * @subsection elements
-     */
-  
+    * @subsection elements
+    */
+
     /**
-     * @workaround ie6 transparent png support
-     * @affected ie6
-     * @css-for ie6
-     * @valid no
-     */
+    * @workaround ie6 transparent png support
+    * @affected ie6
+    * @css-for ie6
+    * @valid no
+    */
     div.v5-grayblock-p {
-        background: none;
+      background: none;
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://t.properm.ru/common/img/v5-gray-frame.png', sizingMethod='crop');
     }
-  
+
     div.it-is-for-you {
-        background: none;
+      background: none;
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://t.properm.ru/common/img/it-is-for-you.png', sizingMethod='crop');
     }
     </style>
     <![endif]-->
+
+    <!--[if lt IE 8]>
+    <style type="text/css">
+    .v5-logo__descr {display: inline; position: relative; top: 16px;}
+    .v5-logo__descr span {display: inline;}  
+    .v5-logo__pic {float: left;}
+    </style>   
+    <![endif]--> 
+   
 
     <script type="text/javascript" src="<?= Yii::app()->request->getBaseUrl(true) ?>/js/jquery-1.3.2-pack.js"></script>
     <script type="text/javascript" src="<?= Yii::app()->request->getBaseUrl(true) ?>/js/jquery.autocomplete-pack.js"></script>
@@ -189,13 +225,11 @@
       <div id="v5-head-wrap" >
         <div id="v5-head">
           <div class="v5-logo">
-            <a href="http://properm.ru/">
-              <i><img src="<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png" /></i>
-            </a>
+            <a href="http://properm.ru/" class="v5-logo__pic" style="background-image: url('<?= Yii::app()->request->getBaseUrl(true) ?>/img/9666e7a3.png'); width: 219;">&nbsp;</a>
           </div>
 
           <?php if (!empty($caption) && empty($search)) { ?>
-            <div class="global-header">
+            <div class="global-header" style="left:229px;">
               — <a href="http://<?= $url ?>"> <?= $caption ?> </a> </div>
 
           <?php } ?>
