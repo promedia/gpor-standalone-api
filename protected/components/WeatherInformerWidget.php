@@ -5,6 +5,8 @@
  * 
  * @author d.korepanova
  */
+require_once(dirname(__FILE__) . "/../lib/CurlHelper/CurlHelper.php");
+
 class WeatherInformerWidget extends CWidget {
 
   /**
@@ -27,16 +29,38 @@ class WeatherInformerWidget extends CWidget {
 
     // if isset cache return it
     if ($widgetCache) {
-
+	
       $this->render($this->viewName, array('data' => $widgetCache));
     } else {
 
       try {
 
         // get weather data array from 66 api
-        $arrWeatherData = XMLRPCHelper::sendMessage('weather.getWeather');
+		
+		//$config = Yii::app()->params['api'];
+		//$client = new GporApiClient($config['host'], $config['key']);
+        //$arrWeatherData = $client->call('weather.getWeather');
+        //$arrWeatherData = XMLRPCHelper::sendMessage('weather.getWeather');
+		
+		$arrWeatherData = array();
+		
+		// get current weather data array
+		$arrWeatherDataCurrent = CurlHelper::getUrl('http://essentialdata.gpor.ru/weathercurrent/perm/');
+		$arrWeatherDataCurrent = json_decode($arrWeatherDataCurrent, true);
+		
+		if(is_array($arrWeatherDataCurrent)) {
+			$arrWeatherData['current'] = $arrWeatherDataCurrent;
+		}
+		
+		// get forecast weather data array
+		$arrWeatherDataForecast = CurlHelper::getUrl('http://essentialdata.gpor.ru/weather/perm/');
+		$arrWeatherDataForecast = json_decode($arrWeatherDataForecast, true);
+		
+		if(is_array($arrWeatherDataForecast)) {
+			$arrWeatherData['forecast'] = $arrWeatherDataForecast;
+		}
 
-        if (is_array($arrWeatherData) && isset($arrWeatherData['current'])) {
+        if (is_array($arrWeatherData)) {
 
           // save cahce
           $cacheTime = !empty(Yii::app()->params['cachingPeriod']['weatherInformer']) ? Yii::app()->params['cachingPeriod']['weatherInformer'] : 60 * 60;
